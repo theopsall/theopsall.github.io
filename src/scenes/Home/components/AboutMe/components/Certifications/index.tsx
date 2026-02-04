@@ -1,14 +1,17 @@
 import Certification from "../../../../../../components/Certification";
 import certifications from "./data";
 import "./index.css";
+
 const Certifications = () => {
   return (
     <div className="certifications-wrapper">
       <h2>Certifications</h2>
-      {certifications.map((cert, index: number) => {
+      {certifications.map((cert) => {
+        // Create stable key from title and organization instead of index
+        const key = `${cert.title}-${cert.organization}`.replace(/\s+/g, '-').toLowerCase();
         return (
           <Certification
-            key={index}
+            key={key}
             title={cert.title}
             organization={cert.organization}
             date={cert.date}
@@ -19,4 +22,5 @@ const Certifications = () => {
     </div>
   );
 };
+
 export default Certifications;

@@ -12,6 +12,22 @@ export default defineConfig({
   },
   build: {
     outDir: 'build',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Vendor splitting for better caching
+          'react-vendor': ['react', 'react-dom', 'react-redux', 'redux'],
+          'radix-ui': [
+            '@radix-ui/react-avatar',
+            '@radix-ui/react-separator',
+            '@radix-ui/react-slot'
+          ],
+          'icons': ['react-icons'],
+        },
+      },
+    },
+    target: 'esnext',
+    minify: 'esbuild',
   },
   base: './',
 });

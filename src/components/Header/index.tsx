@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import signature from "../../assets/images/signature_white.svg";
 import { useHeaderScroll } from "./hooks/useHeaderScroll";
 import "./index.css";
 import ThemeToggle from "../ThemeToggle";
 import { Button } from "../ui/button";
 
-const Header: React.FC = () => {
+const Header: React.FC = memo(() => {
   const { isScrolled } = useHeaderScroll();
 
   const navbarClass = isScrolled ? "navbar scrolled" : "navbar";
@@ -31,6 +31,8 @@ const Header: React.FC = () => {
       </div>
     </nav>
   );
-};
+});
+
+Header.displayName = 'Header';
 
 export default Header;

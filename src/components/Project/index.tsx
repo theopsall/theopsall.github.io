@@ -1,11 +1,13 @@
+import React from 'react';
 import './index.css';
+
 interface IProjectProps {
   title: string;
   description: string;
   link: string;
 }
 
-const Project = (props: IProjectProps) => {
+const Project = React.memo((props: IProjectProps) => {
   const { title, description, link } = props;
   return (
     <a href={link} target="_blank" rel="noreferrer" className="project-item">
@@ -15,6 +17,9 @@ const Project = (props: IProjectProps) => {
       </div>
     </a>
   );
-};
+});
+
+Project.displayName = 'Project';
+
 export default Project;
 

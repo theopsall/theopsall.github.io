@@ -1,4 +1,4 @@
-import type React from "react";
+import React from "react";
 import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
 import "./index.css";
@@ -10,7 +10,7 @@ interface IPositionProps {
   description: React.ReactElement | string;
 }
 
-const Position = (props: IPositionProps) => {
+const Position = React.memo((props: IPositionProps) => {
   const { title, organization, date, description } = props;
   return (
     <div className="experience-position">
@@ -25,6 +25,8 @@ const Position = (props: IPositionProps) => {
       <Separator className="my-4" />
     </div>
   );
-};
+});
+
+Position.displayName = 'Position';
 
 export default Position;

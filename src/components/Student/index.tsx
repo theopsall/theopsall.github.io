@@ -1,4 +1,4 @@
-import type React from "react";
+import React from "react";
 import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
 import "./index.css";
@@ -10,7 +10,7 @@ interface IStudentProps {
   thesis: React.ReactElement | string;
 }
 
-const Student = (props: IStudentProps) => {
+const Student = React.memo((props: IStudentProps) => {
   const { title, organization, date, thesis } = props;
   return (
     <div className="education-item">
@@ -25,5 +25,8 @@ const Student = (props: IStudentProps) => {
       <Separator className="my-4" />
     </div>
   );
-};
+});
+
+Student.displayName = 'Student';
+
 export default Student;

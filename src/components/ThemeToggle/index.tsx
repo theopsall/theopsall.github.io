@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { Actions } from "../../reducers/actions";
 import { useDispatch, useSelector } from "../../reducers/store";
 import { Button } from "../ui/button";
 import { FiMoon, FiSun } from "react-icons/fi";
 
-const ThemeToggle = () => {
+const ThemeToggle = memo(() => {
   const dispatch = useDispatch();
   const isDarkMode = useSelector((state) => state.darkMode);
   const setIsDarkMode = (payload: any) =>
@@ -34,6 +34,8 @@ const ThemeToggle = () => {
       {isDarkMode ? <FiSun /> : <FiMoon />}
     </Button>
   );
-};
+});
+
+ThemeToggle.displayName = 'ThemeToggle';
 
 export default ThemeToggle;

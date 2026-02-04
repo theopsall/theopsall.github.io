@@ -23,7 +23,41 @@
     transform 200ms ease,
     height 200ms ease;
 }
-.navbar.scrolled{
+
+/* When not scrolled (at top), always white text/icons over background image */
+.navbar .signature {
+  height: 50px;
+  transition: filter 200ms ease;
+  filter: none; /* White signature by default */
+}
+
+.navbar .navbar-brand {
+  font-size: 2rem;
+  color: white; /* Always white when at top */
+  font-weight: 400;
+  transition: color 200ms ease;
+}
+
+.navbar .navbar-links .nav-link {
+  color: white; /* Always white when at top */
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 200ms ease;
+}
+
+.navbar .theme-toggle-button {
+  color: white; /* Always white when at top */
+  transition: color 200ms ease;
+}
+
+.navbar .theme-toggle-button svg {
+  height: 18px;
+  width: 18px;
+}
+
+/* When scrolled, follow theme colors */
+.navbar.scrolled {
   background-color: hsl(var(--background) / 0.75);
   border-color: hsl(var(--border) / 0.6);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
@@ -32,49 +66,37 @@
   height: 64px;
 }
 
-.navbar .signature {
-  height: 50px;
-  transition: filter 200ms ease;
-}
-.navbar .theme-toggle-button {
-  color: hsl(var(--foreground));
-}
-.navbar .theme-toggle-button svg {
-  height: 18px;
-  width: 18px;
-}
-html:not(.dark) .navbar .signature {
-  filter: invert(1) brightness(0);
-}
-html.dark .navbar .signature {
-  filter: none;
+.navbar.scrolled .navbar-brand {
+  color: hsl(var(--foreground)); /* Theme color when scrolled */
 }
 
-.navbar .navbar-brand {
-  font-size: 2rem;
-  color: hsl(var(--foreground));
-  font-weight: 400;
+.navbar.scrolled .navbar-links .nav-link {
+  color: hsl(var(--foreground)); /* Theme color when scrolled */
 }
+
+.navbar.scrolled .theme-toggle-button {
+  color: hsl(var(--foreground)); /* Theme color when scrolled */
+}
+
+/* Signature color based on theme when scrolled */
+html:not(.dark) .navbar.scrolled .signature {
+  filter: invert(1) brightness(0); /* Dark signature in light mode */
+}
+
+html.dark .navbar.scrolled .signature {
+  filter: none; /* White signature in dark mode */
+}
+
 .navbar .navbar-links {
   display: flex;
   align-items: center;
   gap: 8px;
 }
+
 .navbar .navbar-links .theme-toggle {
   display: flex;
   align-items: center;
   margin-left: 8px;
-}
-.navbar .navbar-links .nav-link {
-  color: hsl(var(--foreground));
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-
-  /* &:hover {
-        color: orange;
-        background-color: rgba(255, 255, 255, 0.15);
-    } */
 }
 
 @media (max-width: 576px) {
