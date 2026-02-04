@@ -1,36 +1,72 @@
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1120px, calc(100% - 2rem));
   z-index: 100;
   background-color: transparent;
-  height: 75px;
+  height: 72px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 24px;
+  padding-right: 24px;
+  border-radius: 18px;
+  border: 1px solid transparent;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    backdrop-filter 200ms ease,
+    transform 200ms ease,
+    height 200ms ease;
 }
 .navbar.scrolled{
-  background-color: gray;
+  background-color: hsl(var(--background) / 0.75);
+  border-color: hsl(var(--border) / 0.6);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  height: 64px;
 }
 
 .navbar .signature {
   height: 50px;
+  transition: filter 200ms ease;
+}
+.navbar .theme-toggle-button {
+  color: hsl(var(--foreground));
+}
+.navbar .theme-toggle-button svg {
+  height: 18px;
+  width: 18px;
+}
+html:not(.dark) .navbar .signature {
+  filter: invert(1) brightness(0);
+}
+html.dark .navbar .signature {
+  filter: none;
 }
 
 .navbar .navbar-brand {
   font-size: 2rem;
-  color: white;
+  color: hsl(var(--foreground));
   font-weight: 400;
 }
 .navbar .navbar-links {
   display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navbar .navbar-links .theme-toggle {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
 }
 .navbar .navbar-links .nav-link {
-  color: white;
+  color: hsl(var(--foreground));
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;

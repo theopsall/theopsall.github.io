@@ -1,9 +1,9 @@
-import { Button } from "antd";
 import React from "react";
 import signature from "../../assets/images/signature_white.svg";
 import { useHeaderScroll } from "./hooks/useHeaderScroll";
 import "./index.css";
 import ThemeToggle from "../ThemeToggle";
+import { Button } from "../ui/button";
 
 const Header: React.FC = () => {
   const { isScrolled } = useHeaderScroll();
@@ -16,16 +16,18 @@ const Header: React.FC = () => {
         <img src={signature} alt="Theo Psallidas" className="signature" />
       </a>
       <div className="navbar-links">
-        <Button type="text" className="nav-link" href="#AboutMe">
-          About Me
+        <Button variant="ghost" className="nav-link" asChild>
+          <a href="#AboutMe">About Me</a>
         </Button>
-        <Button type="text" className="nav-link" href="#Projects">
-          Projects
+        <Button variant="ghost" className="nav-link" asChild>
+          <a href="#Projects">Projects</a>
         </Button>
-        <Button type="text" className="nav-link" href="#Contact">
-          Contact
+        <Button variant="ghost" className="nav-link" asChild>
+          <a href="#Contact">Contact</a>
         </Button>
-      <ThemeToggle/>
+        <div className="theme-toggle">
+          <ThemeToggle />
+        </div>
       </div>
     </nav>
   );

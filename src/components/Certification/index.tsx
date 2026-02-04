@@ -1,25 +1,30 @@
-import  Divider  from 'antd/lib/divider';
-import Tag from 'antd/lib/tag';
-import './index.css';
+import type React from "react";
+import { Badge } from "../ui/badge";
+import { Separator } from "../ui/separator";
+import "./index.css";
+
 interface ICertificationProps {
   title: string;
   organization: string;
   date: string;
   description: React.ReactElement | string;
-
 }
+
 const Certification = (props: ICertificationProps) => {
   const { title, organization, date, description } = props;
   return (
     <div className="certification-item">
       <div className="row">
-        <h3 className='title'>{title}</h3>
+        <h3 className="title">{title}</h3>
         <span className="period">{date}</span>
       </div>
-      <Tag className='organization'>{organization}</Tag>
+      <Badge className="organization" variant="secondary">
+        {organization}
+      </Badge>
       {description}
-    <Divider/>
-    </div>)
+      <Separator className="my-4" />
+    </div>
+  );
 };
 
 export default Certification;

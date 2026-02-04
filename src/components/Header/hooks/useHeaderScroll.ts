@@ -3,20 +3,16 @@ import { useEffect, useState } from "react";
 export const useHeaderScroll = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
-  const handleScroll = (): void => {
-    const currentScrollPosition: number =
-      window.pageYOffset || document.documentElement.scrollTop;
-    const viewportHeight: number = window.innerHeight;
+  const threshold = 16;
 
-    if (currentScrollPosition > viewportHeight) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
+  const handleScroll = (): void => {
+    const currentScrollPosition = window.scrollY;
+    setIsScrolled(currentScrollPosition > threshold);
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
