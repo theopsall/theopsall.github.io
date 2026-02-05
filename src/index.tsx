@@ -7,6 +7,9 @@ import "./index.css";
 import reducers from "./reducers/reducers";
 const store = createStore(reducers);
 
+// Set dark mode by default for terminal theme
+document.documentElement.classList.add('dark');
+
 const root = createRoot(document.getElementById("root")!);
 
 root.render(

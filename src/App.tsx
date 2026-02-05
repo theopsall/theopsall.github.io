@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { Actions } from "./reducers/actions";
 import { useDispatch } from "./reducers/store";
-import Home from "./scenes/Home";
+import Terminal from "./components/Terminal";
 import GithubService from "./services/GithubService";
 import React from "react";
 
@@ -40,7 +40,7 @@ const App: React.FC = () => {
 
   if (error) return <div className="error">{error}</div>;
 
-  return <Home />;
+  return <Terminal />;
 };
 
 export default App;
