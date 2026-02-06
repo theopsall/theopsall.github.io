@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './index.css';
+import DarkVeil from '../DarkVeil';
 
 interface CommandHistory {
   command: string;
@@ -11,18 +12,18 @@ const getWelcomeBanner = (): CommandHistory => ({
   output: (
     <div className="welcome-banner">
       <pre className="ascii-art">{`
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║  ████████╗██╗  ██╗███████╗ ██████╗ ██████╗  ██████╗ ██████╗  ██████╗ ███████╗║
-║  ╚══██╔══╝██║  ██║██╔════╝██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔════╝║
-║     ██║   ███████║█████╗  ██║   ██║██║  ██║██║   ██║██████╔╝██║   ██║███████╗║
-║     ██║   ██╔══██║██╔══╝  ██║   ██║██║  ██║██║   ██║██╔══██╗██║   ██║╚════██║║
-║     ██║   ██║  ██║███████╗╚██████╔╝██████╔╝╚██████╔╝██║  ██║╚██████╔╝███████║║
-║     ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝║
-║                                                                              ║
-║                   PSALLIDAS THEODOROS - PORTFOLIO v2.0                       ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║  ████████╗██╗  ██╗███████╗ ██████╗ ██████╗  ██████╗ ██████╗  ██████╗ ███████╗  ║
+║  ╚══██╔══╝██║  ██║██╔════╝██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔════╝  ║
+║     ██║   ███████║█████╗  ██║   ██║██║  ██║██║   ██║██████╔╝██║   ██║███████╗  ║
+║     ██║   ██╔══██║██╔══╝  ██║   ██║██║  ██║██║   ██║██╔══██╗██║   ██║╚════██║  ║
+║     ██║   ██║  ██║███████╗╚██████╔╝██████╔╝╚██████╔╝██║  ██║╚██████╔╝███████║  ║
+║     ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝  ║
+║                                                                                ║
+║                      PSALLIDAS THEODOROS - PORTFOLIO v2.0                      ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
       `}</pre>
       <div className="welcome-text">
         <p className="text-highlight">Welcome to my interactive terminal portfolio!</p>
@@ -292,18 +293,18 @@ const Terminal: React.FC = () => {
     banner: () => (
       <div className="welcome-banner">
         <pre className="ascii-art">{`
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║  ████████╗██╗  ██╗███████╗ ██████╗ ██████╗  ██████╗ ██████╗  ██████╗ ███████╗║
-║  ╚══██╔══╝██║  ██║██╔════╝██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔════╝║
-║     ██║   ███████║█████╗  ██║   ██║██║  ██║██║   ██║██████╔╝██║   ██║███████╗║
-║     ██║   ██╔══██║██╔══╝  ██║   ██║██║  ██║██║   ██║██╔══██╗██║   ██║╚════██║║
-║     ██║   ██║  ██║███████╗╚██████╔╝██████╔╝╚██████╔╝██║  ██║╚██████╔╝███████║║
-║     ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝║
-║                                                                              ║
-║                   PSALLIDAS THEODOROS - PORTFOLIO v2.0                       ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║  ████████╗██╗  ██╗███████╗ ██████╗ ██████╗  ██████╗ ██████╗  ██████╗ ███████╗  ║
+║  ╚══██╔══╝██║  ██║██╔════╝██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔════╝  ║
+║     ██║   ███████║█████╗  ██║   ██║██║  ██║██║   ██║██████╔╝██║   ██║███████╗  ║
+║     ██║   ██╔══██║██╔══╝  ██║   ██║██║  ██║██║   ██║██╔══██╗██║   ██║╚════██║  ║
+║     ██║   ██║  ██║███████╗╚██████╔╝██████╔╝╚██████╔╝██║  ██║╚██████╔╝███████║  ║
+║     ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝  ║
+║                                                                                ║
+║                      PSALLIDAS THEODOROS - PORTFOLIO v2.0                      ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
         `}</pre>
       </div>
     ),
@@ -378,55 +379,58 @@ const Terminal: React.FC = () => {
 
   return (
     <div className="terminal-container">
-      <div className="terminal-window">
-        <div className="terminal-header">
-          <div className="traffic-lights">
-            <span className="light light-close"></span>
-            <span className="light light-minimize"></span>
-            <span className="light light-maximize"></span>
-          </div>
-          <div className="terminal-title">
-            <span className="title-icon">👻</span>
-            <span>theodoros@portfolio ~ zsh</span>
-          </div>
-          <div className="terminal-actions"></div>
-        </div>
-        <div className="terminal-body" ref={terminalRef} onClick={handleTerminalClick}>
-          {history.map((item, idx) => (
-            <div key={idx} className="terminal-line">
-              {item.command && (
-                <div className="command-line">
-                  <span className="prompt">
-                    <span className="prompt-user">theodoros</span>
-                    <span className="prompt-at">@</span>
-                    <span className="prompt-host">portfolio</span>
-                    <span className="prompt-separator"> ~ </span>
-                    <span className="prompt-symbol">%</span>
-                  </span>
-                  <span className="command-text">{item.command}</span>
-                </div>
-              )}
-              {item.output && <div className="output">{item.output}</div>}
+      <DarkVeil className="dark-veil-background" />
+      <div className="terminal-overlay">
+        <div className="terminal-window">
+          <div className="terminal-header">
+            <div className="traffic-lights">
+              <span className="light light-close"></span>
+              <span className="light light-minimize"></span>
+              <span className="light light-maximize"></span>
             </div>
-          ))}
-          <div className="terminal-line input-line">
-            <span className="prompt">
-              <span className="prompt-user">theodoros</span>
-              <span className="prompt-at">@</span>
-              <span className="prompt-host">portfolio</span>
-              <span className="prompt-separator"> ~ </span>
-              <span className="prompt-symbol">%</span>
-            </span>
-            <input
-              ref={inputRef}
-              type="text"
-              className="terminal-input"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              autoFocus
-              spellCheck={false}
-            />
+            <div className="terminal-title">
+              <span className="title-icon">&gt;_</span>
+              <span>theodoros@portfolio ~ shell</span>
+            </div>
+            <div className="terminal-actions"></div>
+          </div>
+          <div className="terminal-body" ref={terminalRef} onClick={handleTerminalClick}>
+            {history.map((item, idx) => (
+              <div key={idx} className="terminal-line">
+                {item.command && (
+                  <div className="command-line">
+                    <span className="prompt">
+                      <span className="prompt-user">theodoros</span>
+                      <span className="prompt-at">@</span>
+                      <span className="prompt-host">portfolio</span>
+                      <span className="prompt-separator"> ~ </span>
+                      <span className="prompt-symbol">%</span>
+                    </span>
+                    <span className="command-text">{item.command}</span>
+                  </div>
+                )}
+                {item.output && <div className="output">{item.output}</div>}
+              </div>
+            ))}
+            <div className="terminal-line input-line">
+              <span className="prompt">
+                <span className="prompt-user">theodoros</span>
+                <span className="prompt-at">@</span>
+                <span className="prompt-host">portfolio</span>
+                <span className="prompt-separator"> ~ </span>
+                <span className="prompt-symbol">%</span>
+              </span>
+              <input
+                ref={inputRef}
+                type="text"
+                className="terminal-input"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                autoFocus
+                spellCheck={false}
+              />
+            </div>
           </div>
         </div>
       </div>
