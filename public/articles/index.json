@@ -1,0 +1,12 @@
+{
+  "articles": [
+    {
+      "slug": "hello-world",
+      "title": "Hello World",
+      "description": "An introduction to this blog.",
+      "date": "2026-02-06",
+      "tags": ["personal"],
+      "readingTime": "3 min read"
+    }
+  ]
+}
