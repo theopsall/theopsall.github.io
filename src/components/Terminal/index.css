@@ -298,10 +298,23 @@
   overflow: hidden;
 }
 
+/* Pinned Banner */
+.shell-banner {
+  flex-shrink: 0;
+  padding: 1.5rem 1.5rem 0;
+  background: transparent;
+  color: var(--gh-text);
+  border-bottom: 1px solid rgba(48, 54, 61, 0.3);
+}
+
+.shell-banner .welcome-banner {
+  margin-bottom: 1rem;
+}
+
 /* Terminal Body */
 .terminal-body {
   flex: 1;
-  padding: 1.5rem;
+  padding: 1rem 1.5rem 1.5rem;
   overflow-y: auto;
   background: transparent;
   color: var(--gh-text);
@@ -413,6 +426,137 @@
 
 .terminal-input::selection {
   background: rgba(88, 166, 255, 0.3);
+}
+
+/* Zsh-style tree completion */
+.zsh-tree {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(22, 27, 34, 0.6);
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  animation: lineAppear 0.15s ease-out;
+}
+
+.zsh-tree-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.125rem;
+  color: var(--gh-blue);
+  font-weight: 600;
+}
+
+.zsh-tree-icon {
+  font-size: 0.9rem;
+}
+
+.zsh-tree-label {
+  color: var(--gh-blue);
+}
+
+.zsh-tree-row {
+  display: flex;
+  align-items: baseline;
+  padding: 0.1rem 0;
+  border-radius: 3px;
+  transition: background 0.1s ease;
+}
+
+.zsh-tree-row-active {
+  background: rgba(88, 166, 255, 0.1);
+}
+
+.zsh-tree-branch {
+  color: var(--gh-border);
+  white-space: pre;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.zsh-tree-row-active .zsh-tree-branch {
+  color: var(--gh-text-muted);
+}
+
+.zsh-tree-value {
+  color: var(--gh-green);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.zsh-tree-row-active .zsh-tree-value {
+  color: var(--gh-text-bright);
+  font-weight: 600;
+}
+
+.zsh-tree-desc {
+  color: var(--gh-text-muted);
+  margin-left: 1rem;
+  font-size: 0.8125rem;
+  opacity: 0.7;
+}
+
+.zsh-tree-row-active .zsh-tree-desc {
+  opacity: 1;
+  color: var(--gh-text);
+}
+
+/* Command output tree (experience, education) */
+.cmd-tree {
+  padding: 0.5rem 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.cmd-tree-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-bottom: 0.375rem;
+}
+
+.cmd-tree-icon {
+  font-size: 0.95rem;
+}
+
+.cmd-tree-label {
+  color: var(--gh-blue);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.cmd-tree-group + .cmd-tree-group {
+  margin-top: 0.125rem;
+}
+
+.cmd-tree-row {
+  display: flex;
+  align-items: baseline;
+  line-height: 1.55;
+}
+
+.cmd-tree-branch {
+  color: var(--gh-border);
+  white-space: pre;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.cmd-tree-title {
+  color: var(--gh-text-bright);
+  font-weight: 600;
+}
+
+.cmd-tree-child .cmd-tree-key {
+  color: var(--gh-orange);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.cmd-tree-child .cmd-tree-val {
+  color: var(--gh-text);
 }
 
 /* Output Styling */

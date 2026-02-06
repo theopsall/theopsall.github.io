@@ -39,18 +39,22 @@ const ShellTab: React.FC<ShellTabProps> = ({ isActive, articles, onOpenArticle }
   const [history, setHistory] = useState<CommandHistory[]>([]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [completions, setCompletions] = useState<{ value: string; desc: string }[]>([]);
+  const [completionIndex, setCompletionIndex] = useState(-1);
+  const [completionPrefix, setCompletionPrefix] = useState('');
+  const [completionLabel, setCompletionLabel] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setHistory([getWelcomeBanner()]);
+    setHistory([]);
   }, []);
 
   useEffect(() => {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
-  }, [history]);
+  }, [history, completions]);
 
   useEffect(() => {
     if (isActive) {
@@ -223,43 +227,84 @@ const ShellTab: React.FC<ShellTabProps> = ({ isActive, articles, onOpenArticle }
     ),
     experience: () => (
       <div className="command-output">
-        <p className="text-highlight">Work Experience:</p>
-        {experience.map((exp, idx) => (
-          <div key={idx} className="experience-item">
-            <p className="text-command">{exp.title}</p>
-            <p className="text-normal">{exp.org} • {exp.location}</p>
-            <p className="text-muted-term">{exp.date}</p>
-            <p className="text-normal">
-              <span className="text-keyword">Tech:</span>{' '}
-              {exp.tech.map((tech, i) => (
-                <span key={i}>
-                  <span className="text-string">{tech}</span>
-                  {i < exp.tech.length - 1 ? ', ' : ''}
-                </span>
-              ))}
-            </p>
-            {idx < experience.length - 1 && <div className="separator" />}
+        <div className="cmd-tree">
+          <div className="cmd-tree-header">
+            <span className="cmd-tree-icon">💼</span>
+            <span className="cmd-tree-label">Work Experience</span>
           </div>
-        ))}
+          {experience.map((exp, idx) => {
+            const isLastExp = idx === experience.length - 1;
+            const expBranch = isLastExp ? '└── ' : '├── ';
+            const childPipe = isLastExp ? '    ' : '│   ';
+            const fields = [
+              { key: 'Org', val: exp.org },
+              { key: 'Location', val: exp.location },
+              { key: 'Period', val: exp.date },
+              { key: 'Tech', val: exp.tech.join(', ') },
+            ];
+            return (
+              <div key={idx} className="cmd-tree-group">
+                <div className="cmd-tree-row">
+                  <span className="cmd-tree-branch">{expBranch}</span>
+                  <span className="cmd-tree-title">{exp.title}</span>
+                </div>
+                {fields.map((f, i) => {
+                  const isLastField = i === fields.length - 1;
+                  const fieldBranch = isLastField ? '└── ' : '├── ';
+                  return (
+                    <div key={f.key} className="cmd-tree-row cmd-tree-child">
+                      <span className="cmd-tree-branch">{childPipe}{fieldBranch}</span>
+                      <span className="cmd-tree-key">{f.key}: </span>
+                      <span className="cmd-tree-val">{f.val}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
       </div>
     ),
     education: () => (
       <div className="command-output">
-        <p className="text-highlight">Education:</p>
-        {education.map((edu, idx) => (
-          <div key={idx} className="education-item">
-            <p className="text-command">{edu.degree}</p>
-            <p className="text-normal">{edu.school}</p>
-            <p className="text-muted-term">{edu.location} • {edu.date}</p>
-            {edu.thesis && (
-              <p className="text-normal">
-                <span className="text-keyword">Thesis:</span>{' '}
-                <span className="text-string">"{edu.thesis}"</span>
-              </p>
-            )}
-            {idx < education.length - 1 && <div className="separator" />}
+        <div className="cmd-tree">
+          <div className="cmd-tree-header">
+            <span className="cmd-tree-icon">🎓</span>
+            <span className="cmd-tree-label">Education</span>
           </div>
-        ))}
+          {education.map((edu, idx) => {
+            const isLastEdu = idx === education.length - 1;
+            const eduBranch = isLastEdu ? '└── ' : '├── ';
+            const childPipe = isLastEdu ? '    ' : '│   ';
+            const fields: { key: string; val: string }[] = [
+              { key: 'School', val: edu.school },
+              { key: 'Location', val: edu.location },
+              { key: 'Period', val: edu.date },
+            ];
+            if (edu.thesis) {
+              fields.push({ key: 'Thesis', val: `"${edu.thesis}"` });
+            }
+            return (
+              <div key={idx} className="cmd-tree-group">
+                <div className="cmd-tree-row">
+                  <span className="cmd-tree-branch">{eduBranch}</span>
+                  <span className="cmd-tree-title">{edu.degree}</span>
+                </div>
+                {fields.map((f, i) => {
+                  const isLastField = i === fields.length - 1;
+                  const fieldBranch = isLastField ? '└── ' : '├── ';
+                  return (
+                    <div key={f.key} className="cmd-tree-row cmd-tree-child">
+                      <span className="cmd-tree-branch">{childPipe}{fieldBranch}</span>
+                      <span className="cmd-tree-key">{f.key}: </span>
+                      <span className="cmd-tree-val">{f.val}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
       </div>
     ),
     skills: () => (
@@ -378,7 +423,7 @@ const ShellTab: React.FC<ShellTabProps> = ({ isActive, articles, onOpenArticle }
     const trimmedCmd = cmd.trim().toLowerCase();
 
     if (trimmedCmd === 'clear') {
-      setHistory([getWelcomeBanner()]);
+      setHistory([]);
       return;
     }
 
@@ -405,7 +450,102 @@ const ShellTab: React.FC<ShellTabProps> = ({ isActive, articles, onOpenArticle }
     setHistoryIndex(-1);
   }, [handleBlogCommand]);
 
+  const dismissCompletions = useCallback(() => {
+    setCompletions([]);
+    setCompletionIndex(-1);
+    setCompletionPrefix('');
+    setCompletionLabel('');
+  }, []);
+
+  const commandDescriptions: Record<string, string> = {
+    about: 'Display information about me',
+    experience: 'Show work experience',
+    education: 'Show educational background',
+    skills: 'List technical skills',
+    contact: 'Get contact information',
+    projects: 'View GitHub projects',
+    blog: 'List / open blog articles',
+    clear: 'Clear terminal screen',
+    whoami: 'Display current user',
+    ls: 'List available commands',
+    banner: 'Display welcome banner',
+    pwd: 'Print working directory',
+    date: 'Display current date',
+    echo: 'Echo text',
+    sudo: 'Run as superuser',
+    exit: 'Exit terminal',
+  };
+
+  const getCompletionMatches = useCallback((text: string): {
+    matches: { value: string; desc: string }[];
+    prefix: string;
+    label: string;
+  } => {
+    const trimmed = text.toLowerCase();
+
+    // blog slug completions
+    if (trimmed.startsWith('blog ')) {
+      const partial = trimmed.slice(5);
+      const matches = articles
+        .filter((a) => a.slug.startsWith(partial))
+        .map((a) => ({ value: a.slug, desc: `${a.title} · ${a.readingTime}` }));
+      return { matches, prefix: 'blog ', label: 'articles/' };
+    }
+
+    // command completions
+    const allCmds = [...Object.keys(commands), 'blog'];
+    const unique = [...new Set(allCmds)];
+    const matches = unique
+      .filter((cmd) => cmd.startsWith(trimmed))
+      .map((cmd) => ({ value: cmd, desc: commandDescriptions[cmd] || '' }));
+    return { matches, prefix: '', label: 'commands/' };
+  }, [articles]);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // --- Completion menu is open ---
+    if (completions.length > 0) {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const dir = e.shiftKey ? -1 : 1;
+        const next = (completionIndex + dir + completions.length) % completions.length;
+        setCompletionIndex(next);
+        setInput(completionPrefix + completions[next].value);
+        return;
+      }
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const next = (completionIndex + 1) % completions.length;
+        setCompletionIndex(next);
+        setInput(completionPrefix + completions[next].value);
+        return;
+      }
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const next = (completionIndex - 1 + completions.length) % completions.length;
+        setCompletionIndex(next);
+        setInput(completionPrefix + completions[next].value);
+        return;
+      }
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const selected = completionIndex >= 0
+          ? completionPrefix + completions[completionIndex].value
+          : input;
+        dismissCompletions();
+        handleCommand(selected);
+        setInput('');
+        return;
+      }
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        dismissCompletions();
+        return;
+      }
+      // Any other key dismisses the menu
+      dismissCompletions();
+    }
+
+    // --- Normal mode ---
     if (e.key === 'Enter') {
       handleCommand(input);
       setInput('');
@@ -432,26 +572,21 @@ const ShellTab: React.FC<ShellTabProps> = ({ isActive, articles, onOpenArticle }
       }
     } else if (e.key === 'Tab') {
       e.preventDefault();
-      const trimmed = input.toLowerCase();
+      const { matches, prefix, label } = getCompletionMatches(input);
 
-      // Handle blog slug autocomplete
-      if (trimmed.startsWith('blog ')) {
-        const partial = trimmed.slice(5);
-        if (partial) {
-          const matches = articles.filter((a) => a.slug.startsWith(partial));
-          if (matches.length === 1) {
-            setInput(`blog ${matches[0].slug}`);
-          }
-        }
+      if (matches.length === 0) return;
+
+      if (matches.length === 1) {
+        setInput(prefix + matches[0].value);
         return;
       }
 
-      // Handle regular command autocomplete
-      const availableCommands = [...Object.keys(commands), 'blog'];
-      const matches = availableCommands.filter(cmd => cmd.startsWith(trimmed));
-      if (matches.length === 1) {
-        setInput(matches[0]);
-      }
+      // Multiple matches — open tree completion menu
+      setCompletions(matches);
+      setCompletionPrefix(prefix);
+      setCompletionLabel(label);
+      setCompletionIndex(0);
+      setInput(prefix + matches[0].value);
     }
   };
 
@@ -460,8 +595,11 @@ const ShellTab: React.FC<ShellTabProps> = ({ isActive, articles, onOpenArticle }
   };
 
   return (
-    <div className="shell-tab" style={{ display: isActive ? 'flex' : 'none' }}>
-      <div className="terminal-body" ref={terminalRef} onClick={handleTerminalClick}>
+    <div className="shell-tab" style={{ display: isActive ? 'flex' : 'none' }} onClick={handleTerminalClick}>
+      <div className="shell-banner">
+        {getWelcomeBanner().output}
+      </div>
+      <div className="terminal-body" ref={terminalRef}>
         {history.map((item, idx) => (
           <div key={idx} className="terminal-line">
             {item.command && (
@@ -492,12 +630,38 @@ const ShellTab: React.FC<ShellTabProps> = ({ isActive, articles, onOpenArticle }
             type="text"
             className="terminal-input"
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => {
+              setInput(e.target.value);
+              if (completions.length > 0) dismissCompletions();
+            }}
             onKeyDown={handleKeyDown}
             autoFocus
             spellCheck={false}
           />
         </div>
+        {completions.length > 0 && (
+          <div className="zsh-tree">
+            <div className="zsh-tree-header">
+              <span className="zsh-tree-icon">📂</span>
+              <span className="zsh-tree-label">{completionLabel}</span>
+            </div>
+            {completions.map((item, idx) => {
+              const isLast = idx === completions.length - 1;
+              const isActive = idx === completionIndex;
+              const branch = isLast ? '└── ' : '├── ';
+              return (
+                <div
+                  key={item.value}
+                  className={`zsh-tree-row${isActive ? ' zsh-tree-row-active' : ''}`}
+                >
+                  <span className="zsh-tree-branch">{branch}</span>
+                  <span className="zsh-tree-value">{item.value}</span>
+                  {item.desc && <span className="zsh-tree-desc">{item.desc}</span>}
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
