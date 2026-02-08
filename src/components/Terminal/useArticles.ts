@@ -3,7 +3,7 @@ import type { ArticleMeta, ArticleManifest } from './types';
 
 const MANIFEST_URL = './articles/index.json';
 
-export function useArticles() {
+export const useArticles = () => {
   const [articles, setArticles] = useState<ArticleMeta[]>([]);
   const [loading, setLoading] = useState(false);
   const contentCache = useRef<Map<string, string>>(new Map());
@@ -46,4 +46,4 @@ export function useArticles() {
   );
 
   return { articles, loading, fetchArticle, getArticleBySlug };
-}
+};

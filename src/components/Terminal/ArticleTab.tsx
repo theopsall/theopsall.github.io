@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/github-dark.css';
 import type { ArticleMeta } from './types';
+import { useArticleContent } from './useArticleContent';
 
 interface ArticleTabProps {
   slug: string;
@@ -13,20 +14,7 @@ interface ArticleTabProps {
 }
 
 const ArticleTab: React.FC<ArticleTabProps> = ({ slug, meta, fetchArticle, isActive }) => {
-  const [content, setContent] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    fetchArticle(slug)
-      .then((text) => {
-        if (!cancelled) setContent(text);
-      })
-      .catch(() => {
-        if (!cancelled) setError(`Failed to load article: ${slug}`);
-      });
-    return () => { cancelled = true; };
-  }, [slug, fetchArticle]);
+  const { content, error } = useArticleContent(slug, fetchArticle);
 
   return (
     <div className="article-tab" style={{ display: isActive ? 'block' : 'none' }}>
