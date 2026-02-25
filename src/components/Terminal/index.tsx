@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css';
 import DarkVeil from '../DarkVeil';
 import TabBar from './TabBar';
@@ -7,8 +7,21 @@ import ArticleTab from './ArticleTab';
 import { useArticles } from './useArticles';
 import { useTabs } from './useTabs';
 
+const TITLE_BASE = 'theodoros@portfolio ~ %';
+
 const Terminal: React.FC = () => {
   const { tabs, activeTabId, titleSuffix, openArticle, switchTab, closeTab } = useTabs();
+  const [cursorVisible, setCursorVisible] = useState(true);
+
+  useEffect(() => {
+    const id = setInterval(() => setCursorVisible((v) => !v), 530);
+    return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const suffix = titleSuffix ? ` ${titleSuffix}` : '';
+    document.title = `${TITLE_BASE}${suffix}${cursorVisible ? ' \u2588' : ''}`;
+  }, [cursorVisible, titleSuffix]);
   const { articles, fetchArticle, getArticleBySlug } = useArticles();
 
   return (
