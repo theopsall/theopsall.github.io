@@ -74,6 +74,7 @@ export const COMMAND_DESCRIPTIONS: Record<string, string> = {
   echo: 'Echo text',
   sudo: 'Run as superuser',
   exit: 'Exit terminal',
+  ps: 'Show running processes',
   '?': 'Show help (alias for help)',
 };
 
@@ -165,6 +166,7 @@ export const useCommands = (
           <div><span className="text-command">clear</span> <span className="text-muted-term">- Clear terminal screen</span></div>
           <div><span className="text-command">whoami</span> <span className="text-muted-term">- Display current user</span></div>
           <div><span className="text-command">ls</span> <span className="text-muted-term">- List available commands</span></div>
+          <div><span className="text-command">ps</span> <span className="text-muted-term">- Show running processes</span></div>
           <div><span className="text-command">banner</span> <span className="text-muted-term">- Display welcome banner</span></div>
           <div><span className="text-command">?</span> <span className="text-muted-term">- Show this help</span></div>
         </div>
@@ -180,6 +182,7 @@ export const useCommands = (
           <span className="text-command">contact</span>
           <span className="text-command">projects</span>
           <span className="text-command">blog</span>
+          <span className="text-command">ps</span>
           <span className="text-command">help</span>
           <span className="text-command">clear</span>
         </div>
@@ -188,16 +191,19 @@ export const useCommands = (
     about: () => (
       <div className="command-output">
         <p className="text-highlight">Theodoros Psallidas</p>
-        <p className="text-normal">Full Stack Software Engineer & Machine Learning Engineer</p>
+        <p className="text-normal">Senior Software Engineer & AI Engineer</p>
         <p className="text-muted-term">
-          Passionate about building intelligent systems that bridge the gap between
-          cutting-edge ML research and production-ready applications. Currently working
-          at Behavioral Signals on AI-driven voice and emotion recognition technologies.
+          Passionate about audiovisual data analysis and machine learning, specializing
+          in multimodal video summarization. Currently building AI-driven voice and emotion
+          recognition technologies at Behavioral Signals.
         </p>
         <br />
-        <p className="text-normal">📍 Location: Greece</p>
-        <p className="text-normal">🎓 Education: PhD Candidate in Computer Science</p>
-        <p className="text-normal">💼 Focus: Full Stack Development, Machine Learning, Audio Processing</p>
+        <p className="text-normal">📍 Athens, Greece</p>
+        <p className="text-normal">🎓 PhD Candidate — Video Summarization @ University of Thessaly</p>
+        <p className="text-normal">💼 Full Stack Development, Machine Learning, Audio Processing</p>
+        <p className="text-normal">🏆 Winner — Code the IoT Hackathon (MaTHiSiS Project)</p>
+        <p className="text-normal">🍺 Craft beer enthusiast</p>
+        <p className="text-normal">🐕 Pair programming with Barney (my dog)</p>
       </div>
     ),
     whoami: () => (
@@ -281,17 +287,41 @@ export const useCommands = (
         <p className="text-highlight">Contact Information:</p>
         <div className="contact-links">
           <p><span className="text-keyword">GitHub:</span>{' '}<a href="https://github.com/theopsall" target="_blank" rel="noopener noreferrer" className="text-link">github.com/theopsall</a></p>
-          <p><span className="text-keyword">LinkedIn:</span>{' '}<a href="https://www.linkedin.com/in/theodoros-psallidas" target="_blank" rel="noopener noreferrer" className="text-link">linkedin.com/in/theodoros-psallidas</a></p>
+          <p><span className="text-keyword">LinkedIn:</span>{' '}<a href="https://www.linkedin.com/in/tpsallidas" target="_blank" rel="noopener noreferrer" className="text-link">linkedin.com/in/tpsallidas</a></p>
           <p><span className="text-keyword">Email:</span>{' '}<a href="mailto:theopsall@gmail.com" className="text-link">theopsall@gmail.com</a></p>
-          <p><span className="text-keyword">Google Scholar:</span>{' '}<a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" rel="noopener noreferrer" className="text-link">View Publications</a></p>
+          <p><span className="text-keyword">Twitter:</span>{' '}<a href="https://twitter.com/TheoPsallidas" target="_blank" rel="noopener noreferrer" className="text-link">@TheoPsallidas</a></p>
+          <p><span className="text-keyword">Google Scholar:</span>{' '}<a href="https://scholar.google.com/citations?user=theopsall" target="_blank" rel="noopener noreferrer" className="text-link">View Publications</a></p>
         </div>
       </div>
     ),
     projects: () => (
       <div className="command-output">
-        <p className="text-highlight">GitHub Projects:</p>
-        <p className="text-muted-term">Fetching repositories from GitHub...</p>
-        <p className="text-normal">Visit <a href="https://github.com/theopsall?tab=repositories" target="_blank" rel="noopener noreferrer" className="text-link">github.com/theopsall</a> to see all projects</p>
+        <div className="cmd-tree">
+          <div className="cmd-tree-header">
+            <span className="cmd-tree-icon">📦</span>
+            <span className="cmd-tree-label">Pinned Repositories</span>
+          </div>
+          {[
+            { name: 'Video-Summarization', desc: 'Multimodal video summarization from wearable cameras' },
+            { name: 'whisper_wrapper', desc: 'Speech recognition wrapper for OpenAI Whisper' },
+            { name: 'multiSmote', desc: 'Multi-label SMOTE implementation for imbalanced datasets' },
+            { name: 'video_annotator', desc: 'Web-based video annotation tool' },
+            { name: 'deep_video_extraction', desc: 'Deep feature extraction from video' },
+          ].map((repo, idx, arr) => {
+            const isLast = idx === arr.length - 1;
+            const branch = isLast ? '└── ' : '├── ';
+            return (
+              <div key={repo.name} className="cmd-tree-row">
+                <span className="cmd-tree-branch">{branch}</span>
+                <a href={`https://github.com/theopsall/${repo.name}`} target="_blank" rel="noopener noreferrer" className="text-link" style={{ fontWeight: 600 }}>{repo.name}</a>
+                <span className="text-muted-term" style={{ marginLeft: '0.75rem' }}>{repo.desc}</span>
+              </div>
+            );
+          })}
+        </div>
+        <p className="text-muted-term" style={{ marginTop: '0.75rem' }}>
+          View all at <a href="https://github.com/theopsall?tab=repositories" target="_blank" rel="noopener noreferrer" className="text-link">github.com/theopsall</a>
+        </p>
       </div>
     ),
     sudo: () => (
@@ -321,6 +351,64 @@ export const useCommands = (
         <p className="text-muted-term">Usage: echo is not implemented yet. But I hear you! 📢</p>
       </div>
     ),
+    ps: () => {
+      const now = new Date();
+      const birth = new Date('1995-02-07');
+      const uptimeMs = now.getTime() - birth.getTime();
+      const uptimeDays = Math.floor(uptimeMs / (1000 * 60 * 60 * 24));
+      const uptimeYears = Math.floor(uptimeDays / 365);
+      const remainDays = uptimeDays % 365;
+      const uptimeStr = `${uptimeYears}y ${remainDays}d`;
+
+      const formatTime = (startDate: string) => {
+        const start = new Date(startDate);
+        const ms = now.getTime() - start.getTime();
+        const d = Math.floor(ms / (1000 * 60 * 60 * 24));
+        const y = Math.floor(d / 365);
+        const rd = d % 365;
+        return y > 0 ? `${y}y ${rd}d` : `${rd}d`;
+      };
+
+      const processes = [
+        { pid: 1, user: 'theopsall', start: '1995-02-07', cpu: '99.9', mem: '100.0', stat: 'R+', cmd: 'living --fullstack --ai' },
+        { pid: 42, user: 'theopsall', start: '2013-09-01', cpu: '92.4', mem: '87.3', stat: 'R', cmd: 'coding --lang=python,ts,js,c' },
+        { pid: 100, user: 'theopsall', start: '2021-01-01', cpu: '95.1', mem: '91.7', stat: 'R', cmd: 'phd --cs --university-of-thessaly' },
+        { pid: 200, user: 'theopsall', start: '2024-03-01', cpu: '88.6', mem: '76.2', stat: 'R', cmd: 'work --org=behavioral-signals --role=senior-swe' },
+        { pid: 301, user: 'theopsall', start: '2019-01-01', cpu: '78.3', mem: '68.5', stat: 'S', cmd: 'ml-research --pytorch --keras --faiss' },
+        { pid: 404, user: 'theopsall', start: '2020-01-01', cpu: '45.2', mem: '32.1', stat: 'S', cmd: 'open-source --github=theopsall' },
+        { pid: 512, user: 'barney', start: '2020-01-01', cpu: '100.0', mem: '99.9', stat: 'R+', cmd: 'pair-programming --with=theopsall --treats=yes' },
+      ];
+
+      return (
+        <div className="command-output">
+          <div className="ps-output">
+            <div className="ps-header">
+              <span className="ps-col ps-pid">PID</span>
+              <span className="ps-col ps-user">USER</span>
+              <span className="ps-col ps-time">TIME</span>
+              <span className="ps-col ps-cpu">%CPU</span>
+              <span className="ps-col ps-mem">%MEM</span>
+              <span className="ps-col ps-stat">STAT</span>
+              <span className="ps-col ps-cmd">COMMAND</span>
+            </div>
+            {processes.map((p) => (
+              <div key={p.pid} className="ps-row">
+                <span className="ps-col ps-pid">{p.pid}</span>
+                <span className="ps-col ps-user">{p.user}</span>
+                <span className="ps-col ps-time">{formatTime(p.start)}</span>
+                <span className="ps-col ps-cpu">{p.cpu}</span>
+                <span className="ps-col ps-mem">{p.mem}</span>
+                <span className="ps-col ps-stat">{p.stat}</span>
+                <span className="ps-col ps-cmd">{p.cmd}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-muted-term" style={{ marginTop: '0.75rem' }}>
+            Uptime: <span className="text-string">{uptimeStr}</span> | Processes: <span className="text-string">{processes.length}</span> | Load avg: <span className="text-string">∞ ∞ ∞</span>
+          </p>
+        </div>
+      );
+    },
     banner: () => (
       <div className="welcome-banner">
         <pre className="ascii-art">{`

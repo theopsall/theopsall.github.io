@@ -79,9 +79,9 @@
 }
 
 .terminal-window {
-  width: 100%;
-  max-width: 1400px;
-  height: 85vh;
+  width: 80%;
+  max-width: 80%;
+  height: 80vh;
   background: rgba(13, 17, 23, 0.55);
   backdrop-filter: blur(16px) saturate(1.2);
   -webkit-backdrop-filter: blur(16px) saturate(1.2);
@@ -547,6 +547,108 @@
 .cmd-tree-title {
   color: var(--gh-text-bright);
   font-weight: 600;
+}
+
+/* PS command output */
+.ps-output {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.ps-header,
+.ps-row {
+  display: flex;
+  gap: 0;
+  white-space: nowrap;
+}
+
+.ps-header {
+  color: var(--gh-text-bright);
+  font-weight: 700;
+  border-bottom: 1px solid var(--gh-border);
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.ps-row {
+  color: var(--gh-text);
+  transition: background 0.15s ease;
+  padding: 0.1rem 0;
+  border-radius: 2px;
+}
+
+.ps-row:hover {
+  background: rgba(33, 38, 45, 0.5);
+}
+
+.ps-col {
+  flex-shrink: 0;
+}
+
+.ps-pid {
+  width: 50px;
+  color: var(--gh-text-muted);
+  text-align: right;
+  padding-right: 12px;
+}
+
+.ps-header .ps-pid {
+  color: var(--gh-text-bright);
+}
+
+.ps-user {
+  width: 100px;
+  color: var(--gh-green);
+}
+
+.ps-header .ps-user {
+  color: var(--gh-text-bright);
+}
+
+.ps-time {
+  width: 80px;
+  text-align: right;
+  padding-right: 12px;
+  color: var(--gh-cyan);
+}
+
+.ps-header .ps-time {
+  color: var(--gh-text-bright);
+}
+
+.ps-cpu,
+.ps-mem {
+  width: 60px;
+  text-align: right;
+  padding-right: 12px;
+  color: var(--gh-orange);
+}
+
+.ps-header .ps-cpu,
+.ps-header .ps-mem {
+  color: var(--gh-text-bright);
+}
+
+.ps-stat {
+  width: 45px;
+  text-align: center;
+  color: var(--gh-green);
+  font-weight: 600;
+}
+
+.ps-header .ps-stat {
+  color: var(--gh-text-bright);
+}
+
+.ps-cmd {
+  flex: 1;
+  color: var(--gh-purple);
+  padding-left: 8px;
+}
+
+.ps-header .ps-cmd {
+  color: var(--gh-text-bright);
 }
 
 .cmd-tree-child .cmd-tree-key {

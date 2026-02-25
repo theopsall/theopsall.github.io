@@ -2,7 +2,7 @@ import { useReducer, useCallback } from 'react';
 import type { TabState, TabAction } from './types';
 
 const initialState: TabState = {
-  tabs: [{ id: 'shell', type: 'shell', label: 'Shell' }],
+  tabs: [{ id: 'shell', type: 'shell', label: '~' }],
   activeTabId: 'shell',
 };
 
