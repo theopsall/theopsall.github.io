@@ -1,7 +1,5 @@
 import {
   useDispatch as _useDispatch,
-  useSelector as _useSelector,
-  TypedUseSelectorHook,
 } from "react-redux";
 import { GithubModel } from "services/GithubService/dtos/GithubModel";
 
@@ -22,5 +20,3 @@ export const useDispatch = () => {
     dispatch(event);
   };
 };
-
-export const useSelector: TypedUseSelectorHook<IState> = _useSelector;

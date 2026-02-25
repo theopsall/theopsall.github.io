@@ -13,10 +13,11 @@ const TabBar: React.FC<TabBarProps> = ({ tabs, activeTabId, onSwitchTab, onClose
   return (
     <div className="tab-bar">
       {tabs.map((tab) => (
-        <div
+        <button
           key={tab.id}
           className={`tab ${tab.id === activeTabId ? 'tab-active' : ''}`}
           onClick={() => onSwitchTab(tab.id)}
+          type="button"
         >
           <span className="tab-icon">
             {tab.type === 'shell' ? <VscTerminal /> : <VscFile />}
@@ -30,11 +31,12 @@ const TabBar: React.FC<TabBarProps> = ({ tabs, activeTabId, onSwitchTab, onClose
                 onCloseTab(tab.id);
               }}
               aria-label={`Close ${tab.label}`}
+              type="button"
             >
               <VscClose />
             </button>
           )}
-        </div>
+        </button>
       ))}
     </div>
   );

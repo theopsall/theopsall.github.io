@@ -31,6 +31,7 @@ export type TabAction =
   | { type: 'SWITCH_TAB'; id: string };
 
 export interface CommandHistory {
+  id: number;
   command: string;
   output: React.ReactNode;
 }

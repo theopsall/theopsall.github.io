@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import "./App.css";
 import { Actions } from "./reducers/actions";
 import { useDispatch } from "./reducers/store";
@@ -6,18 +6,35 @@ import Terminal from "./components/Terminal";
 import GithubService from "./services/GithubService";
 import React from "react";
 
-const App: React.FC = () => {
-  const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+interface FetchState {
+  isLoading: boolean;
+  error: string | null;
+}
 
-  const setRepos = (payload: any) =>
-    dispatch({ type: Actions.SetRepos, payload });
+type FetchAction =
+  | { type: 'FETCH_START' }
+  | { type: 'FETCH_SUCCESS' }
+  | { type: 'FETCH_ERROR'; error: string };
+
+function fetchReducer(state: FetchState, action: FetchAction): FetchState {
+  switch (action.type) {
+    case 'FETCH_START':
+      return { isLoading: true, error: null };
+    case 'FETCH_SUCCESS':
+      return { isLoading: false, error: null };
+    case 'FETCH_ERROR':
+      return { isLoading: false, error: action.error };
+  }
+}
+
+const App: React.FC = () => {
+  const reduxDispatch = useDispatch();
+  const [state, dispatch] = useReducer(fetchReducer, { isLoading: true, error: null });
 
   useEffect(() => {
     const fetchRepositories = async () => {
+      dispatch({ type: 'FETCH_START' });
       try {
-        setIsLoading(true);
         const repositories = await GithubService.getRepositories("theopsall");
 
         const nonForkedRepositories = repositories
@@ -26,19 +43,18 @@ const App: React.FC = () => {
             new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
           );
 
-        setRepos(nonForkedRepositories);
+        reduxDispatch({ type: Actions.SetRepos, payload: nonForkedRepositories });
+        dispatch({ type: 'FETCH_SUCCESS' });
       } catch (err) {
         console.error("Failed to fetch repositories:", err);
-        setError("Failed to load projects");
-      } finally {
-        setIsLoading(false);
+        dispatch({ type: 'FETCH_ERROR', error: "Failed to load projects" });
       }
     };
 
     fetchRepositories();
   }, []);
 
-  if (error) return <div className="error">{error}</div>;
+  if (state.error) return <div className="error">{state.error}</div>;
 
   return <Terminal />;
 };

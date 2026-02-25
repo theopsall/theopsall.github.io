@@ -224,8 +224,11 @@
   gap: 0.5rem;
   padding: 0.5rem 1rem;
   font-size: 0.8125rem;
+  font-family: inherit;
   color: var(--gh-text-muted);
   cursor: pointer;
+  background: transparent;
+  border: none;
   border-bottom: 2px solid transparent;
   white-space: nowrap;
   transition: all 0.2s ease;

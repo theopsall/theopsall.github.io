@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import type { ArticleMeta } from './types';
 import { COMMAND_DESCRIPTIONS } from './useCommands';
 
-export interface CompletionItem {
+interface CompletionItem {
   value: string;
   desc: string;
 }

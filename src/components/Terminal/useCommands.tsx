@@ -78,22 +78,21 @@ export const COMMAND_DESCRIPTIONS: Record<string, string> = {
   '?': 'Show help (alias for help)',
 };
 
-const renderTreeFields = (
-  fields: { key: string; val: string }[],
-  childPipe: string,
-) => {
-  return fields.map((f, i) => {
-    const isLast = i === fields.length - 1;
-    const branch = isLast ? '└── ' : '├── ';
-    return (
-      <div key={f.key} className="cmd-tree-row cmd-tree-child">
-        <span className="cmd-tree-branch">{childPipe}{branch}</span>
-        <span className="cmd-tree-key">{f.key}: </span>
-        <span className="cmd-tree-val">{f.val}</span>
-      </div>
-    );
-  });
-};
+const TreeFields: React.FC<{ fields: { key: string; val: string }[]; childPipe: string }> = ({ fields, childPipe }) => (
+  <>
+    {fields.map((f, i) => {
+      const isLast = i === fields.length - 1;
+      const branch = isLast ? '└── ' : '├── ';
+      return (
+        <div key={f.key} className="cmd-tree-row cmd-tree-child">
+          <span className="cmd-tree-branch">{childPipe}{branch}</span>
+          <span className="cmd-tree-key">{f.key}: </span>
+          <span className="cmd-tree-val">{f.val}</span>
+        </div>
+      );
+    })}
+  </>
+);
 
 export const useCommands = (
   articles: ArticleMeta[],
@@ -223,17 +222,17 @@ export const useCommands = (
             const branch = isLast ? '└── ' : '├── ';
             const pipe = isLast ? '    ' : '│   ';
             return (
-              <div key={idx} className="cmd-tree-group">
+              <div key={exp.title} className="cmd-tree-group">
                 <div className="cmd-tree-row">
                   <span className="cmd-tree-branch">{branch}</span>
                   <span className="cmd-tree-title">{exp.title}</span>
                 </div>
-                {renderTreeFields([
+                <TreeFields fields={[
                   { key: 'Org', val: exp.org },
                   { key: 'Location', val: exp.location },
                   { key: 'Period', val: exp.date },
                   { key: 'Tech', val: exp.tech.join(', ') },
-                ], pipe)}
+                ]} childPipe={pipe} />
               </div>
             );
           })}
@@ -258,12 +257,12 @@ export const useCommands = (
             ];
             if (edu.thesis) fields.push({ key: 'Thesis', val: `"${edu.thesis}"` });
             return (
-              <div key={idx} className="cmd-tree-group">
+              <div key={edu.degree} className="cmd-tree-group">
                 <div className="cmd-tree-row">
                   <span className="cmd-tree-branch">{branch}</span>
                   <span className="cmd-tree-title">{edu.degree}</span>
                 </div>
-                {renderTreeFields(fields, pipe)}
+                <TreeFields fields={fields} childPipe={pipe} />
               </div>
             );
           })}

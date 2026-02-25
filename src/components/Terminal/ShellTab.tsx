@@ -50,13 +50,20 @@ const ShellTab: React.FC<ShellTabProps> = ({ isActive, articles, onOpenArticle }
   } = useShell(articles, onOpenArticle, isActive);
 
   return (
-    <div className="shell-tab" style={{ display: isActive ? 'flex' : 'none' }} onClick={focusInput}>
+    <div
+      className="shell-tab"
+      style={{ display: isActive ? 'flex' : 'none' }}
+      role="application"
+      aria-label="Terminal shell"
+      onClick={focusInput}
+      onKeyDown={focusInput}
+    >
       <div className="shell-banner">
         <WelcomeBanner />
       </div>
       <div className="terminal-body" ref={bodyRef}>
-        {history.map((item, idx) => (
-          <div key={idx} className="terminal-line">
+        {history.map((item) => (
+          <div key={item.id} className="terminal-line">
             {item.command && (
               <div className="command-line">
                 <Prompt />
@@ -75,7 +82,6 @@ const ShellTab: React.FC<ShellTabProps> = ({ isActive, articles, onOpenArticle }
             value={input}
             onChange={(e) => handleInputChange(e.target.value)}
             onKeyDown={handleKeyDown}
-            autoFocus
             spellCheck={false}
           />
         </div>

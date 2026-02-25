@@ -3,6 +3,8 @@ import type { CommandHistory, ArticleMeta } from './types';
 import { useCommands } from './useCommands';
 import { useCompletions } from './useCompletions';
 
+let nextHistoryId = 0;
+
 export const useShell = (
   articles: ArticleMeta[],
   onOpenArticle: (slug: string, title: string) => void,
@@ -39,7 +41,7 @@ export const useShell = (
       return;
     }
 
-    setHistory((prev) => [...prev, { command: cmd, output: result.output }]);
+    setHistory((prev) => [...prev, { id: nextHistoryId++, command: cmd, output: result.output }]);
     setCmdHistory((prev) => [...prev, cmd]);
     setHistoryIndex(-1);
   }, [executeCommand]);
