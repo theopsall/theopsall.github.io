@@ -55,10 +55,14 @@ const Terminal: React.FC = () => {
               <span className="light light-maximize"></span>
             </div>
             <div className="terminal-title">
-              <span className="title-icon">&gt;_</span>
-              <span>theodoros@portfolio ~ {titleSuffix}</span>
+              <span className="title-dot">●</span>
+              <span>theodoros@tpsallidas ~ zsh{titleSuffix ? ` — ${titleSuffix}` : ''}</span>
             </div>
-            <div className="terminal-actions"></div>
+            <div className="terminal-controls">
+              <span>⊟</span>
+              <span>+</span>
+              <span>×</span>
+            </div>
           </div>
           <TabBar
             tabs={tabs}

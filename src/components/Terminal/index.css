@@ -92,7 +92,7 @@
   background: rgba(13, 17, 23, 0.55);
   backdrop-filter: blur(16px) saturate(1.2);
   -webkit-backdrop-filter: blur(16px) saturate(1.2);
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow:
     0 0 0 1px rgba(90, 106, 132, 0.3),
     0 30px 120px rgba(1, 4, 12, 0.75),
@@ -118,15 +118,14 @@
 
 /* Terminal Header - macOS style */
 .terminal-header {
-  background: rgba(22, 27, 34, 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(48, 54, 61, 0.5);
-  padding: 0.75rem 1rem;
+  background: #12171e;
+  border-bottom: 1px solid #1a2230;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   user-select: none;
+  flex-shrink: 0;
 }
 
 .traffic-lights {
@@ -184,35 +183,41 @@
 }
 
 .terminal-title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--gh-text-muted);
-  font-size: 0.875rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
+  color: #8b95a3;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
   font-weight: 500;
+  letter-spacing: 0.2px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: calc(100% - 160px);
 }
 
-.title-icon {
-  font-size: 0.875rem;
-  opacity: 0.8;
+.title-dot {
+  color: #00ff88;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  flex-shrink: 0;
 }
 
-.terminal-actions {
-  width: 60px; /* Balance the traffic lights */
+.terminal-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: #4a5560;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  cursor: default;
 }
 
 /* Tab Bar */
 .tab-bar {
   display: flex;
-  background: rgba(22, 27, 34, 0.4);
-  border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+  background: #0d1116;
+  border-bottom: 1px solid #1a2230;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
@@ -228,40 +233,41 @@
 .tab {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.8125rem;
-  font-family: inherit;
-  color: var(--gh-text-muted);
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  color: #4a5560;
   cursor: pointer;
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
   white-space: nowrap;
-  transition: all 0.2s ease;
-  position: relative;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
 }
 
 .tab:hover {
-  color: var(--gh-text);
-  background: rgba(33, 38, 45, 0.4);
+  color: #8b95a3;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .tab-active {
-  color: var(--gh-text-bright);
-  background: rgba(33, 38, 45, 0.6);
-  border-bottom-color: var(--gh-blue);
+  color: #22ff88;
+  background: rgba(34, 255, 136, 0.04);
+  border-bottom-color: #22ff88;
 }
 
 .tab-icon {
   display: flex;
   align-items: center;
-  font-size: 0.9375rem;
-  opacity: 0.8;
+  font-size: 14px;
+  opacity: 0.7;
 }
 
 .tab-active .tab-icon {
   opacity: 1;
+  color: #22ff88;
 }
 
 .tab-label {
@@ -274,22 +280,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border: none;
   background: transparent;
-  color: var(--gh-text-muted);
+  color: #4a5560;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 3px;
   padding: 0;
-  font-size: 0.875rem;
+  font-size: 12px;
   transition: all 0.15s ease;
-  margin-left: 0.25rem;
+  margin-left: 4px;
 }
 
 .tab-close:hover {
-  background: rgba(255, 123, 114, 0.2);
-  color: var(--gh-red);
+  background: rgba(255, 95, 87, 0.15);
+  color: #ff5f57;
 }
 
 /* Terminal Content Area */
@@ -1135,11 +1141,11 @@
   }
 
   .terminal-header {
-    padding: 0.5rem 0.75rem;
+    padding: 10px 12px;
   }
 
   .terminal-title {
-    font-size: 0.75rem;
+    font-size: 11px;
   }
 
   .ascii-portrait {
