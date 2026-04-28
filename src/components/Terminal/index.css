@@ -94,9 +94,8 @@
   -webkit-backdrop-filter: blur(16px) saturate(1.2);
   border-radius: 10px;
   box-shadow:
-    0 0 0 1px rgba(90, 106, 132, 0.3),
-    0 30px 120px rgba(1, 4, 12, 0.75),
-    inset 0 1px 0 rgba(240, 246, 252, 0.08);
+    0 24px 60px -4px #00ff8820,
+    0 0 1px 0 #00ff8818;
   display: flex;
   flex-direction: column;
   overflow: hidden;
