@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
-import DarkVeil from '../DarkVeil';
+import MatrixRain from '../MatrixRain';
+import Navbar from '../Navbar';
 import TabBar from './TabBar';
 import ShellTab from './ShellTab';
+import type { ShellTabHandle } from './ShellTab';
 import ArticleTab from './ArticleTab';
 import { useArticles } from './useArticles';
 import { useTabs } from './useTabs';
@@ -14,11 +16,21 @@ const Terminal: React.FC = () => {
   const suffixRef = useRef(titleSuffix);
   suffixRef.current = titleSuffix;
 
+  const shellRef = useRef<ShellTabHandle | null>(null);
+  const [activeCommand, setActiveCommand] = useState('home');
+
+  const handleNavCommand = (cmd: string) => {
+    if (activeTabId !== 'shell') switchTab('shell');
+    shellRef.current?.runCommand('clear');
+    shellRef.current?.runCommand(cmd);
+    setActiveCommand(cmd);
+  };
+
   useEffect(() => {
     let visible = true;
     const update = () => {
       const suffix = suffixRef.current ? ` ${suffixRef.current}` : '';
-      document.title = `${TITLE_BASE}${suffix}${visible ? ' \u2588' : ''}`;
+      document.title = `${TITLE_BASE}${suffix}${visible ? ' █' : ''}`;
     };
     update();
     const id = setInterval(() => {
@@ -32,7 +44,8 @@ const Terminal: React.FC = () => {
 
   return (
     <div className="terminal-container">
-      <DarkVeil className="dark-veil-background" />
+      <MatrixRain className="matrix-rain-background" />
+      <Navbar activeCommand={activeCommand} onRunCommand={handleNavCommand} />
       <div className="terminal-overlay">
         <div className="terminal-window">
           <div className="terminal-header">
@@ -55,6 +68,7 @@ const Terminal: React.FC = () => {
           />
           <div className="terminal-content-area">
             <ShellTab
+              ref={shellRef}
               isActive={activeTabId === 'shell'}
               articles={articles}
               onOpenArticle={openArticle}

@@ -27,8 +27,7 @@
   min-height: 100vh;
   background: transparent;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   padding: 0;
   font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Consolas', monospace;
   position: relative;
@@ -57,13 +56,21 @@
   filter: brightness(0.6) saturate(0.85);
 }
 
+.matrix-rain-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .terminal-overlay {
   width: 100%;
-  min-height: 100vh;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  padding-top: calc(72px + 2rem);
   position: relative;
   z-index: 2;
 }
@@ -679,54 +686,6 @@
   margin-bottom: 2rem;
 }
 
-.welcome-hero {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  justify-content: center;
-}
-
-.welcome-info {
-  text-align: left;
-}
-
-.ascii-name {
-  color: var(--gh-blue);
-  font-size: 0.65rem;
-  line-height: 1.15;
-  margin-bottom: 0.75rem;
-  text-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
-  animation: glowPulse 3s ease-in-out infinite;
-}
-
-/* ASCII Portrait */
-.ascii-portrait {
-  color: var(--gh-green);
-  font-size: 0.5rem;
-  line-height: 1.05;
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 8px rgba(126, 231, 135, 0.25);
-  animation: portraitGlow 4s ease-in-out infinite;
-  flex-shrink: 0;
-}
-
-@keyframes portraitGlow {
-  0%, 100% {
-    text-shadow: 0 0 8px rgba(126, 231, 135, 0.25);
-  }
-  50% {
-    text-shadow: 0 0 16px rgba(126, 231, 135, 0.45);
-  }
-}
-
-@keyframes glowPulse {
-  0%, 100% {
-    text-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
-  }
-  50% {
-    text-shadow: 0 0 20px rgba(88, 166, 255, 0.5);
-  }
-}
 
 .welcome-text {
   margin-top: 1rem;
@@ -1143,23 +1102,6 @@
     padding: 1rem;
   }
 
-  .welcome-hero {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .welcome-info {
-    text-align: center;
-  }
-
-  .ascii-name {
-    font-size: 0.55rem;
-  }
-
-  .ascii-portrait {
-    font-size: 0.45rem;
-  }
-
   .skills-grid {
     grid-template-columns: 1fr;
   }
@@ -1204,9 +1146,6 @@
     font-size: 0.35rem;
   }
 
-  .ascii-name {
-    font-size: 0.45rem;
-  }
 
   .light {
     width: 10px;

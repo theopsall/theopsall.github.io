@@ -58,6 +58,7 @@ const skills = {
 };
 
 export const COMMAND_DESCRIPTIONS: Record<string, string> = {
+  home: 'Display welcome screen',
   about: 'Display information about me',
   experience: 'Show work experience',
   education: 'Show educational background',
@@ -410,12 +411,17 @@ export const useCommands = (
     },
     banner: () => (
       <div className="welcome-banner">
-        <pre className="ascii-name">{`
- ╔╦╗╦ ╦╔═╗╔═╗╔╦╗╔═╗╦═╗╔═╗╔═╗
-  ║ ╠═╣║╣ ║ ║ ║║║ ║╠╦╝║ ║╚═╗
-  ╩ ╩ ╩╚═╝╚═╝═╩╝╚═╝╩╚═╚═╝╚═╝`}</pre>
         <p className="text-highlight">Theodoros Psallidas</p>
         <p className="text-normal">Senior Software Engineer · AI Engineer</p>
+      </div>
+    ),
+    home: () => (
+      <div className="command-output">
+        <p className="text-highlight">Theodoros Psallidas</p>
+        <p className="text-normal">Senior Software Engineer · AI Engineer</p>
+        <p className="text-muted-term" style={{ marginTop: '0.5rem' }}>
+          Type <span className="text-command">help</span> or <span className="text-command">?</span> to see available commands.
+        </p>
       </div>
     ),
   };

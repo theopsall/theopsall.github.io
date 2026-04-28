@@ -1,0 +1,185 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: #050607;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.navbar-top-line {
+  height: 1px;
+  background: #ffffff0d;
+  flex-shrink: 0;
+}
+
+.navbar-main-row {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.navbar-bottom-line {
+  height: 1px;
+  background: #22ff88;
+  box-shadow: 0 0 6px 0 #22ff8866;
+  flex-shrink: 0;
+}
+
+/* Left group */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 10px 1px #4ade80cc;
+  flex-shrink: 0;
+}
+
+.navbar-prompt {
+  display: flex;
+  align-items: center;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.navbar-prompt-user { color: #4ade80; font-weight: 700; }
+.navbar-prompt-at   { color: #52525b; }
+.navbar-prompt-host { color: #22d3ee; font-weight: 600; }
+.navbar-prompt-colon { color: #52525b; }
+.navbar-prompt-tilde { color: #a1a1aa; font-weight: 600; }
+.navbar-prompt-dollar { color: #52525b; }
+
+.navbar-cursor {
+  width: 8px;
+  height: 16px;
+  background: #4ade80;
+  box-shadow: 0 0 8px 0 #4ade8099;
+}
+
+.navbar-cursor.blink-off {
+  opacity: 0;
+}
+
+/* Center group */
+.navbar-center {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+}
+
+.navbar-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: #737373;
+  font-weight: 400;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+.navbar-link:hover {
+  color: #22ff88;
+}
+
+.navbar-link-active {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.navbar-link-bracket {
+  color: #22ff88;
+  font-weight: 600;
+}
+
+.navbar-link-label-active {
+  color: #22ff88;
+  font-weight: 700;
+  text-shadow: 0 0 6px #22ff8877;
+}
+
+/* Right group */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-session-chip {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #0a1410;
+  border: 1px solid #22d3ee55;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #22d3ee;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.navbar-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid #ffffff14;
+  cursor: pointer;
+  color: #a1a1aa;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.navbar-icon-btn:hover {
+  border-color: #ffffff33;
+  color: #e4e4e7;
+}
+
+.navbar-kbd-chip {
+  display: flex;
+  align-items: center;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: #0a1410;
+  border: 1px solid #22ff8833;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #22ff88;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.navbar-kbd-chip:hover {
+  border-color: #22ff8866;
+}

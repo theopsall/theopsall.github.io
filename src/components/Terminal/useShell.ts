@@ -153,5 +153,6 @@ export const useShell = (
     handleKeyDown,
     handleInputChange,
     focusInput,
+    runCommand,
   };
 };
