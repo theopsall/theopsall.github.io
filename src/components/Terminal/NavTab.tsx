@@ -1,32 +1,22 @@
-import React, { forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useImperativeHandle, useEffect, useRef } from 'react';
 import type { ArticleMeta } from './types';
 import { useShell } from './useShell';
 import { P10kInfoLine, P10kArrow, P10kActiveArrow, P10kHint } from './P10kPrompt';
-import BannerTitle from './BannerTitle';
 
-interface ShellTabProps {
+interface NavTabProps {
+  command: string;
   isActive: boolean;
   articles: ArticleMeta[];
   onOpenArticle: (slug: string, title: string) => void;
   fetchArticle: (slug: string) => Promise<string>;
 }
 
-export interface ShellTabHandle {
+export interface NavTabHandle {
   runCommand: (cmd: string) => void;
 }
 
-const WelcomeBanner: React.FC = () => (
-  <div className="welcome-banner">
-    <BannerTitle />
-    <p className="text-normal">Senior Software Engineer · AI Engineer</p>
-    <p className="text-muted-term">
-      Type <span className="text-command">help</span> or <span className="text-command">?</span> to see available commands.
-    </p>
-  </div>
-);
-
-const ShellTab = forwardRef<ShellTabHandle, ShellTabProps>(
-  ({ isActive, articles, onOpenArticle, fetchArticle }, ref) => {
+const NavTab = forwardRef<NavTabHandle, NavTabProps>(
+  ({ command, isActive, articles, onOpenArticle, fetchArticle }, ref) => {
     const {
       input, suggestion, cwd, history, promptTime, completions,
       inputRef, bodyRef,
@@ -36,22 +26,24 @@ const ShellTab = forwardRef<ShellTabHandle, ShellTabProps>(
 
     useImperativeHandle(ref, () => ({ runCommand }), [runCommand]);
 
+    const didAutoRun = useRef(false);
+    useEffect(() => {
+      if (!didAutoRun.current) {
+        didAutoRun.current = true;
+        runCommand(command, false);
+      }
+    }, [command, runCommand]);
+
     return (
       <div
         className="shell-tab"
         style={{ display: isActive ? 'flex' : 'none' }}
         role="application"
-        aria-label="Terminal shell"
+        aria-label={`${command} tab`}
         onClick={focusInput}
         onKeyDown={focusInput}
       >
         <div className="terminal-body" ref={bodyRef}>
-          {history.length === 0 && (
-            <div className="shell-banner">
-              <WelcomeBanner />
-            </div>
-          )}
-
           {history.map((item) => (
             <div key={item.id} className="terminal-line">
               {item.command && (
@@ -117,6 +109,6 @@ const ShellTab = forwardRef<ShellTabHandle, ShellTabProps>(
   }
 );
 
-ShellTab.displayName = 'ShellTab';
+NavTab.displayName = 'NavTab';
 
-export default ShellTab;
+export default NavTab;

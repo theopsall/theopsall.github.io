@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Moon } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import './index.css';
 
 const NAV_LINKS = [
-  { id: 'home',     label: '~/home',     command: 'home' },
-  { id: 'about',    label: '~/about',    command: 'about' },
-  { id: 'projects', label: '~/projects', command: 'projects' },
-  { id: 'skills',   label: '~/skills',   command: 'skills' },
-  { id: 'contact',  label: '~/contact',  command: 'contact' },
+  { id: 'home',       label: '~/home',       command: 'home' },
+  { id: 'about',      label: '~/about',      command: 'about' },
+  { id: 'experience', label: '~/experience', command: 'experience' },
+  { id: 'projects',   label: '~/projects',   command: 'projects' },
+  { id: 'skills',     label: '~/skills',     command: 'skills' },
+  { id: 'contact',    label: '~/contact',    command: 'contact' },
 ];
 
 interface NavbarProps {
@@ -82,9 +82,6 @@ const Navbar: React.FC<NavbarProps> = ({ activeCommand, onRunCommand }) => {
           <span className="navbar-session-chip" aria-label="Session ID">
             {sessionId.current}
           </span>
-          <button className="navbar-icon-btn" aria-label="Toggle theme">
-            <Moon size={14} />
-          </button>
           <a
             className="navbar-icon-btn"
             href="https://github.com/theopsall"

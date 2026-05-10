@@ -28,10 +28,8 @@ const MatrixRain: React.FC<MatrixRainProps> = ({
     let rainDrops: number[] = [];
 
     const setup = () => {
-      const parent = canvas.parentElement;
-      if (!parent) return;
-      canvas.width  = parent.clientWidth;
-      canvas.height = parent.clientHeight;
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
 
       const cols = Math.floor(canvas.width / fontSize);
 
@@ -43,7 +41,7 @@ const MatrixRain: React.FC<MatrixRainProps> = ({
       );
 
       // Fill with background color first
-      ctx.fillStyle = '#050607';
+      ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     };
 
@@ -52,7 +50,7 @@ const MatrixRain: React.FC<MatrixRainProps> = ({
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = '#0F0';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
       ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < rainDrops.length; i++) {

@@ -1,20 +1,23 @@
 import React, { useCallback } from 'react';
 import type { ArticleMeta } from './types';
+import { HOME_FILES, HOME_DIRS, FILE_TO_COMMAND } from './constants';
+import BlogCatOutput from './BlogCatOutput';
+import BannerTitle from './BannerTitle';
 
 const experience = [
+  {
+    title: 'Senior Software Engineer',
+    org: 'ProxyFoods.ai',
+    location: 'Greece',
+    date: 'Feb 2026 - Present',
+    tech: ['AI/ML', 'ReactJS', 'FastAPI'],
+  },
   {
     title: 'Full Stack Software Engineer',
     org: 'Behavioral Signals',
     location: 'Greece',
-    date: 'March 2024 - Present',
+    date: 'March 2024 - Feb 2026',
     tech: ['ReactJS', 'FastAPI', 'Django', 'AI/ML'],
-  },
-  {
-    title: 'Machine Learning Engineer',
-    org: 'NCSR Demokritos',
-    location: 'Ayia Paraskevi, Greece',
-    date: 'Dec 2022 - Feb 2024',
-    tech: ['Deep Learning', 'Faiss', 'ReactJS', 'FastAPI', 'Docker'],
   },
   {
     title: 'Full Stack Software Engineer',
@@ -66,13 +69,15 @@ export const COMMAND_DESCRIPTIONS: Record<string, string> = {
   contact: 'Get contact information',
   projects: 'View GitHub projects',
   blog: 'List / open blog articles',
+  cd: 'Change directory (cd blog, cd ..)',
   clear: 'Clear terminal screen',
   whoami: 'Display current user',
-  ls: 'List available commands',
+  ls: 'List files and commands',
+  cat: 'Read a file (e.g. cat about.md)',
+  echo: 'Echo text to terminal',
   banner: 'Display welcome banner',
   pwd: 'Print working directory',
   date: 'Display current date',
-  echo: 'Echo text',
   sudo: 'Run as superuser',
   exit: 'Exit terminal',
   ps: 'Show running processes',
@@ -98,6 +103,8 @@ const TreeFields: React.FC<{ fields: { key: string; val: string }[]; childPipe: 
 export const useCommands = (
   articles: ArticleMeta[],
   onOpenArticle: (slug: string, title: string) => void,
+  cwd: string,
+  fetchArticle: (slug: string) => Promise<string>,
 ) => {
   const handleBlogCommand = useCallback((args: string): React.ReactNode => {
     const slug = args.trim();
@@ -144,11 +151,52 @@ export const useCommands = (
     return (
       <div className="command-output">
         <p className="text-muted-term">
-          Opening <span className="text-command">{article.title}</span> in a new tab...
+          Opening <span className="text-command">{article.title}</span> in a new tab…
         </p>
       </div>
     );
   }, [articles, onOpenArticle]);
+
+  const handleCatCommand = useCallback((file: string): React.ReactNode => {
+    if (!file) {
+      return (
+        <div className="command-output">
+          <p className="text-error">cat: missing file operand</p>
+          <p className="text-muted-term">Usage: <span className="text-command">cat &lt;file&gt;</span></p>
+        </div>
+      );
+    }
+
+    // blog/slug.md from anywhere
+    if (file.startsWith('blog/')) {
+      const slug = file.slice(5).replace(/\.md$/, '');
+      return <BlogCatOutput slug={slug} fetchArticle={fetchArticle} />;
+    }
+
+    // inside ~/blog: cat slug.md or cat slug
+    if (cwd === '~/blog') {
+      const slug = file.replace(/\.md$/, '');
+      return <BlogCatOutput slug={slug} fetchArticle={fetchArticle} />;
+    }
+
+    // home directory files
+    const mapped = FILE_TO_COMMAND[file.toLowerCase()];
+    if (mapped) {
+      // Return the command output inline
+      return commands[mapped]?.() ?? (
+        <div className="command-output">
+          <p className="text-error">cat: {file}: No such file or directory</p>
+        </div>
+      );
+    }
+
+    return (
+      <div className="command-output">
+        <p className="text-error">cat: {file}: No such file or directory</p>
+        <p className="text-muted-term">Available: {HOME_FILES.join('  ')}  {HOME_DIRS.map(d => d + '/').join('  ')}</p>
+      </div>
+    );
+  }, [cwd, fetchArticle]);
 
   const commands: Record<string, () => React.ReactNode> = {
     help: () => (
@@ -162,32 +210,47 @@ export const useCommands = (
           <div><span className="text-command">contact</span> <span className="text-muted-term">- Get contact information</span></div>
           <div><span className="text-command">projects</span> <span className="text-muted-term">- View GitHub projects</span></div>
           <div><span className="text-command">blog</span> <span className="text-muted-term">- List blog articles</span></div>
-          <div><span className="text-command">blog &lt;slug&gt;</span> <span className="text-muted-term">- Open an article in a new tab</span></div>
+          <div><span className="text-command">blog &lt;slug&gt;</span> <span className="text-muted-term">- Open article in new tab</span></div>
+          <div><span className="text-command">cd blog</span> <span className="text-muted-term">- Enter blog directory</span></div>
+          <div><span className="text-command">cd ..</span> <span className="text-muted-term">- Go up a directory</span></div>
+          <div><span className="text-command">ls</span> <span className="text-muted-term">- List files in current directory</span></div>
+          <div><span className="text-command">cat &lt;file&gt;</span> <span className="text-muted-term">- Read a file</span></div>
           <div><span className="text-command">clear</span> <span className="text-muted-term">- Clear terminal screen</span></div>
           <div><span className="text-command">whoami</span> <span className="text-muted-term">- Display current user</span></div>
-          <div><span className="text-command">ls</span> <span className="text-muted-term">- List available commands</span></div>
           <div><span className="text-command">ps</span> <span className="text-muted-term">- Show running processes</span></div>
           <div><span className="text-command">banner</span> <span className="text-muted-term">- Display welcome banner</span></div>
           <div><span className="text-command">?</span> <span className="text-muted-term">- Show this help</span></div>
         </div>
       </div>
     ),
-    ls: () => (
-      <div className="command-output">
-        <div className="ls-output">
-          <span className="text-command">about</span>
-          <span className="text-command">experience</span>
-          <span className="text-command">education</span>
-          <span className="text-command">skills</span>
-          <span className="text-command">contact</span>
-          <span className="text-command">projects</span>
-          <span className="text-command">blog</span>
-          <span className="text-command">ps</span>
-          <span className="text-command">help</span>
-          <span className="text-command">clear</span>
+    ls: () => {
+      if (cwd === '~/blog') {
+        if (articles.length === 0) {
+          return (
+            <div className="command-output">
+              <p className="text-muted-term">No articles found.</p>
+            </div>
+          );
+        }
+        return (
+          <div className="command-output">
+            <div className="ls-output">
+              {articles.map((a) => (
+                <span key={a.slug} className="text-link">{a.slug}.md</span>
+              ))}
+            </div>
+          </div>
+        );
+      }
+      return (
+        <div className="command-output">
+          <div className="ls-output">
+            {HOME_FILES.map((f) => <span key={f} className="text-link">{f}</span>)}
+            {HOME_DIRS.map((d) => <span key={d} className="text-command">{d}/</span>)}
+          </div>
         </div>
-      </div>
-    ),
+      );
+    },
     about: () => (
       <div className="command-output">
         <p className="text-highlight">Theodoros Psallidas</p>
@@ -198,12 +261,12 @@ export const useCommands = (
           recognition technologies at Behavioral Signals.
         </p>
         <br />
-        <p className="text-normal">📍 Athens, Greece</p>
-        <p className="text-normal">🎓 PhD Candidate — Video Summarization @ University of Thessaly</p>
-        <p className="text-normal">💼 Full Stack Development, Machine Learning, Audio Processing</p>
-        <p className="text-normal">🏆 Winner — Code the IoT Hackathon (MaTHiSiS Project)</p>
-        <p className="text-normal">🍺 Craft beer enthusiast</p>
-        <p className="text-normal">🐕 Pair programming with Barney (my dog)</p>
+        <p className="text-normal">Location   — Athens, Greece</p>
+        <p className="text-normal">Research   — PhD Candidate, Video Summarization @ University of Thessaly</p>
+        <p className="text-normal">Focus      — Full Stack Development, Machine Learning, Audio Processing</p>
+        <p className="text-normal">Award      — Winner, Code the IoT Hackathon (MaTHiSiS Project)</p>
+        <p className="text-normal">Hobby      — Craft beer enthusiast</p>
+        <p className="text-normal">Partner    — Pair programming with Barney (my dog)</p>
       </div>
     ),
     whoami: () => (
@@ -215,7 +278,6 @@ export const useCommands = (
       <div className="command-output">
         <div className="cmd-tree">
           <div className="cmd-tree-header">
-            <span className="cmd-tree-icon">💼</span>
             <span className="cmd-tree-label">Work Experience</span>
           </div>
           {experience.map((exp, idx) => {
@@ -223,7 +285,7 @@ export const useCommands = (
             const branch = isLast ? '└── ' : '├── ';
             const pipe = isLast ? '    ' : '│   ';
             return (
-              <div key={exp.title} className="cmd-tree-group">
+              <div key={exp.title + exp.org} className="cmd-tree-group">
                 <div className="cmd-tree-row">
                   <span className="cmd-tree-branch">{branch}</span>
                   <span className="cmd-tree-title">{exp.title}</span>
@@ -244,7 +306,6 @@ export const useCommands = (
       <div className="command-output">
         <div className="cmd-tree">
           <div className="cmd-tree-header">
-            <span className="cmd-tree-icon">🎓</span>
             <span className="cmd-tree-label">Education</span>
           </div>
           {education.map((edu, idx) => {
@@ -298,7 +359,6 @@ export const useCommands = (
       <div className="command-output">
         <div className="cmd-tree">
           <div className="cmd-tree-header">
-            <span className="cmd-tree-icon">📦</span>
             <span className="cmd-tree-label">Pinned Repositories</span>
           </div>
           {[
@@ -338,7 +398,7 @@ export const useCommands = (
     ),
     pwd: () => (
       <div className="command-output">
-        <p className="text-normal">/home/theodoros/portfolio</p>
+        <p className="text-normal">/home/theodoros/portfolio{cwd === '~/blog' ? '/blog' : ''}</p>
       </div>
     ),
     date: () => (
@@ -373,7 +433,7 @@ export const useCommands = (
         { pid: 1, user: 'theopsall', start: '1995-02-07', cpu: '99.9', mem: '100.0', stat: 'R+', cmd: 'living --fullstack --ai' },
         { pid: 42, user: 'theopsall', start: '2013-09-01', cpu: '92.4', mem: '87.3', stat: 'R', cmd: 'coding --lang=python,ts,js,c' },
         { pid: 100, user: 'theopsall', start: '2021-01-01', cpu: '95.1', mem: '91.7', stat: 'R', cmd: 'phd --cs --university-of-thessaly' },
-        { pid: 200, user: 'theopsall', start: '2024-03-01', cpu: '88.6', mem: '76.2', stat: 'R', cmd: 'work --org=behavioral-signals --role=senior-swe' },
+        { pid: 200, user: 'theopsall', start: '2024-03-01', cpu: '88.6', mem: '76.2', stat: 'R', cmd: 'work --org=proxyfoods --role=senior-swe' },
         { pid: 301, user: 'theopsall', start: '2019-01-01', cpu: '78.3', mem: '68.5', stat: 'S', cmd: 'ml-research --pytorch --keras --faiss' },
         { pid: 404, user: 'theopsall', start: '2020-01-01', cpu: '45.2', mem: '32.1', stat: 'S', cmd: 'open-source --github=theopsall' },
         { pid: 512, user: 'barney', start: '2020-01-01', cpu: '100.0', mem: '99.9', stat: 'R+', cmd: 'pair-programming --with=theopsall --treats=yes' },
@@ -411,13 +471,13 @@ export const useCommands = (
     },
     banner: () => (
       <div className="welcome-banner">
-        <p className="text-highlight">Theodoros Psallidas</p>
+        <BannerTitle />
         <p className="text-normal">Senior Software Engineer · AI Engineer</p>
       </div>
     ),
     home: () => (
       <div className="command-output">
-        <p className="text-highlight">Theodoros Psallidas</p>
+        <BannerTitle />
         <p className="text-normal">Senior Software Engineer · AI Engineer</p>
         <p className="text-muted-term" style={{ marginTop: '0.5rem' }}>
           Type <span className="text-command">help</span> or <span className="text-command">?</span> to see available commands.
@@ -426,20 +486,51 @@ export const useCommands = (
     ),
   };
 
-  const executeCommand = useCallback((cmd: string): { output: React.ReactNode } | 'clear' => {
+  const executeCommand = useCallback((cmd: string): { output: React.ReactNode } | 'clear' | { cwd: string; output: React.ReactNode } => {
     const trimmed = cmd.trim().toLowerCase();
+    const raw = cmd.trim();
 
     if (trimmed === 'clear') return 'clear';
-
     if (trimmed === '') return { output: null };
+
+    // cd handling
+    if (trimmed === 'cd blog' || trimmed === 'cd ./blog') {
+      return { cwd: '~/blog', output: null };
+    }
+    if (trimmed === 'cd' || trimmed === 'cd ~' || trimmed === 'cd /') {
+      return { cwd: '~', output: null };
+    }
+    if (trimmed === 'cd ..' || trimmed === 'cd ../') {
+      if (cwd === '~/blog') return { cwd: '~', output: null };
+      return { output: <div className="command-output"><p className="text-muted-term">Already at home directory.</p></div> };
+    }
+    if (trimmed.startsWith('cd ')) {
+      const target = trimmed.slice(3).trim();
+      return {
+        output: (
+          <div className="command-output">
+            <p className="text-error">cd: {target}: No such directory</p>
+          </div>
+        ),
+      };
+    }
 
     if (trimmed === 'blog' || trimmed.startsWith('blog ')) {
       const args = trimmed === 'blog' ? '' : trimmed.slice(5);
       return { output: handleBlogCommand(args) };
     }
 
-    if (trimmed === '?') return { output: commands['help']() };
+    if (trimmed === 'cat' || trimmed.startsWith('cat ')) {
+      const file = raw.slice(3).trim();
+      return { output: handleCatCommand(file) };
+    }
 
+    if (trimmed.startsWith('echo ')) {
+      const text = raw.slice(5);
+      return { output: <div className="command-output"><p className="text-normal">{text}</p></div> };
+    }
+
+    if (trimmed === '?') return { output: commands['help']() };
     if (commands[trimmed]) return { output: commands[trimmed]() };
 
     return {
@@ -450,9 +541,9 @@ export const useCommands = (
         </div>
       ),
     };
-  }, [handleBlogCommand]);
+  }, [handleBlogCommand, handleCatCommand, cwd]);
 
-  const commandNames = [...new Set([...Object.keys(commands), 'blog', '?'])];
+  const commandNames = [...new Set([...Object.keys(commands), 'blog', 'cd', '?'])];
 
   return { executeCommand, commandNames };
 };

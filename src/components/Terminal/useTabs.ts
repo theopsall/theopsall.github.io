@@ -20,6 +20,18 @@ const tabReducer = (state: TabState, action: TabAction): TabState => {
         activeTabId: tabId,
       };
     }
+    case 'OPEN_NAV': {
+      const tabId = `nav-${action.command}`;
+      const existing = state.tabs.find((t) => t.id === tabId);
+      if (existing) return { ...state, activeTabId: tabId };
+      return {
+        tabs: [
+          ...state.tabs,
+          { id: tabId, type: 'nav', label: action.label, command: action.command },
+        ],
+        activeTabId: tabId,
+      };
+    }
     case 'CLOSE_TAB': {
       if (action.id === 'shell') return state;
       const idx = state.tabs.findIndex((t) => t.id === action.id);
@@ -44,6 +56,10 @@ export const useTabs = () => {
     dispatch({ type: 'OPEN_ARTICLE', slug, title });
   }, []);
 
+  const openNavTab = useCallback((command: string, label: string) => {
+    dispatch({ type: 'OPEN_NAV', command, label });
+  }, []);
+
   const switchTab = useCallback((id: string) => {
     dispatch({ type: 'SWITCH_TAB', id });
   }, []);
@@ -62,6 +78,7 @@ export const useTabs = () => {
     activeTabId: state.activeTabId,
     titleSuffix,
     openArticle,
+    openNavTab,
     switchTab,
     closeTab,
   };

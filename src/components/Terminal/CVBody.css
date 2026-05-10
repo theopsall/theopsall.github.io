@@ -1,0 +1,349 @@
+.cv-body {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  background: var(--term-bg-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px 32px 28px 32px;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(38, 38, 38, 0.8) transparent;
+}
+
+.cv-body::-webkit-scrollbar { width: 12px; }
+.cv-body::-webkit-scrollbar-track { background: transparent; }
+.cv-body::-webkit-scrollbar-thumb {
+  background: rgba(38, 38, 38, 0.8);
+  border-radius: 6px;
+  border: 2px solid transparent;
+}
+.cv-body::-webkit-scrollbar-thumb:hover { background: var(--term-border); }
+
+/* Intro line */
+.cv-intro {
+  color: var(--term-text-faint);
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Prompt line */
+.cv-prompt-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cv-prompt-text {
+  color: var(--term-text-primary);
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cv-cmd-text {
+  color: var(--term-text-primary);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.cv-hint-text {
+  color: var(--term-text-faint);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* Output text styles */
+.cv-output-bright {
+  color: var(--term-nav-line);
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.cv-output-normal {
+  color: var(--term-text-secondary);
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.cv-meta-text {
+  color: var(--term-text-faint);
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Separator */
+.cv-separator {
+  width: 100%;
+  height: 1px;
+  background: var(--term-border);
+  flex-shrink: 0;
+}
+
+/* Chips */
+.cv-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+
+.cv-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.cv-chip-bright {
+  background: var(--term-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  color: var(--term-text-primary);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.094);
+}
+
+.cv-chip-mid {
+  background: var(--term-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.133);
+  color: var(--term-text-light);
+}
+
+.cv-chip-dim {
+  background: var(--term-bg-chip);
+  border: 1px solid var(--term-border);
+  color: var(--term-text-secondary);
+}
+
+/* Experience cards */
+.cv-exp-card {
+  background: var(--term-bg-tab);
+  border-radius: 6px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  border-style: solid;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 2px;
+}
+
+.cv-exp-card-active {
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
+.cv-exp-card-dim {
+  border-color: var(--term-border);
+}
+
+.cv-exp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cv-exp-head-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cv-exp-marker {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.cv-exp-role {
+  color: var(--term-text-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cv-exp-at {
+  color: var(--term-text-dim);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.cv-exp-company {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cv-exp-dates {
+  color: var(--term-text-dim);
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cv-exp-desc {
+  color: var(--term-text-secondary);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.cv-exp-bullet {
+  color: var(--term-text-dim);
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.cv-exp-stack {
+  color: rgba(163, 163, 163, 0.73);
+  font-size: 11px;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Education */
+.cv-edu-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cv-edu-icon {
+  color: var(--term-text-light);
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.cv-edu-key {
+  color: var(--term-text-light);
+  font-size: 13px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.cv-edu-val {
+  color: var(--term-nav-line);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* Contact */
+.cv-contact-cards {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.cv-contact-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.cv-contact-card:hover {
+  opacity: 0.8;
+}
+
+.cv-contact-card-bright {
+  background: var(--term-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  color: var(--term-text-primary);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.094);
+}
+
+.cv-contact-card-mid {
+  background: var(--term-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.133);
+  color: var(--term-text-light);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.094);
+}
+
+.cv-contact-card-dim {
+  background: var(--term-bg-chip);
+  border: 1px solid var(--term-border);
+  color: var(--term-text-secondary);
+}
+
+.cv-contact-footer {
+  color: var(--term-text-faint);
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Final prompt with cursor */
+.cv-final-prompt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.cv-cursor-block {
+  display: inline-block;
+  width: 10px;
+  height: 18px;
+  background: var(--term-text-primary);
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.667);
+  transition: opacity 0s;
+}
+
+.cv-cursor-blink-off {
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .cv-body {
+    padding: 16px 20px 24px 20px;
+  }
+
+  .cv-prompt-text,
+  .cv-cmd-text {
+    font-size: 13px;
+  }
+
+  .cv-contact-cards {
+    flex-direction: column;
+  }
+
+  .cv-chips-row {
+    gap: 8px;
+  }
+
+  .cv-exp-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

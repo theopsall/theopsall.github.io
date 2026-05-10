@@ -1,5 +1,5 @@
 import React from 'react';
-import { VscTerminal, VscFile, VscClose } from 'react-icons/vsc';
+import { Terminal, FileText } from 'lucide-react';
 import type { Tab } from './types';
 
 interface TabBarProps {
@@ -9,37 +9,42 @@ interface TabBarProps {
   onCloseTab: (id: string) => void;
 }
 
-const TabBar: React.FC<TabBarProps> = ({ tabs, activeTabId, onSwitchTab, onCloseTab }) => {
-  return (
-    <div className="tab-bar">
-      {tabs.map((tab) => (
+const TabIcon: React.FC<{ type: Tab['type'] }> = ({ type }) => {
+  if (type === 'shell') return <Terminal size={12} className="cv-tab-icon" />;
+  return <FileText size={12} className="cv-tab-icon" />;
+};
+
+const TabBar: React.FC<TabBarProps> = ({ tabs, activeTabId, onSwitchTab, onCloseTab }) => (
+  <div className="cv-tab-strip">
+    {tabs.map((tab) => {
+      const isActive = tab.id === activeTabId;
+      const isShell = tab.type === 'shell';
+      return (
         <button
           key={tab.id}
-          className={`tab ${tab.id === activeTabId ? 'tab-active' : ''}`}
+          className={`cv-tab${isActive ? (isShell ? ' cv-tab-terminal-active' : ' cv-tab-shell-active') : ' cv-tab-inactive-item'}`}
           onClick={() => onSwitchTab(tab.id)}
           type="button"
+          aria-label={tab.label}
+          aria-current={isActive ? 'page' : undefined}
         >
-          <span className="tab-icon">
-            {tab.type === 'shell' ? <VscTerminal /> : <VscFile />}
-          </span>
-          <span className="tab-label">{tab.label}</span>
-          {tab.type === 'article' && (
+          <TabIcon type={tab.type} />
+          <span className="cv-tab-label">{tab.label}</span>
+          {isActive && isShell && <span className="cv-tab-dot" />}
+          {!isShell && (
             <button
-              className="tab-close"
-              onClick={(e) => {
-                e.stopPropagation();
-                onCloseTab(tab.id);
-              }}
+              className="cv-tab-close-btn"
+              onClick={(e) => { e.stopPropagation(); onCloseTab(tab.id); }}
               aria-label={`Close ${tab.label}`}
               type="button"
             >
-              <VscClose />
+              ×
             </button>
           )}
         </button>
-      ))}
-    </div>
-  );
-};
+      );
+    })}
+  </div>
+);
 
 export default TabBar;

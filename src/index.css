@@ -4,6 +4,27 @@
 
 @layer base {
   :root {
+    /* ─── Terminal Theme Tokens ─────────────────────────────── */
+    --term-bg-base:        #000000;   /* page / navbar */
+    --term-bg-surface:     #0a0a0a;   /* terminal window body */
+    --term-bg-elevated:    #111111;   /* title bar */
+    --term-bg-tab:         #0d0d0d;   /* tab strip */
+    --term-bg-chip:        #141414;   /* chips / badges */
+    --term-bg-card:        #1a1a1a;   /* cards / exp blocks */
+    --term-border:         #262626;   /* main borders */
+    --term-border-mid:     #333333;   /* traffic lights */
+    --term-text-primary:   #ffffff;
+    --term-text-secondary: #d4d4d4;
+    --term-text-light:     #a3a3a3;
+    --term-text-muted:     #8a8a8a;
+    --term-text-dim:       #737373;
+    --term-text-faint:     #525252;
+    --term-text-zinc:      #a1a1aa;
+    --term-accent-blue:    #89b4fa;   /* p10k dir */
+    --term-accent-green:   #a6e3a1;   /* p10k git / arrow */
+    --term-accent-red:     #ef4444;   /* error / low battery */
+    --term-nav-line:       #e5e5e5;   /* navbar bottom line */
+    --term-nav-led:        #d4d4d4;   /* navbar LED / cursor */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -70,10 +91,10 @@
 html,
 body {
   width: 100%;
+  height: 100%;
   margin: 0px;
   padding: 0px;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  overflow: hidden;
 }
 body {
   margin: 0;
@@ -95,19 +116,19 @@ code {
 }
 
 ::-webkit-scrollbar-track {
-  background: #2a2a2a; /* Color of the track */
+  background: var(--term-border); /* Color of the track */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #444; /* Color of the scroll thumb */
+  background: var(--term-border-mid); /* Color of the scroll thumb */
   border-radius: 5px; /* Border radius of the scroll thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Color of the scroll thumb on hover */
+  background: var(--term-text-faint); /* Color of the scroll thumb on hover */
 }
 
 /* For Firefox */
 html {
-  scrollbar-color: #444 #2a2a2a;
+  scrollbar-color: var(--term-border-mid) var(--term-border);
 }

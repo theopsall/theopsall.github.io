@@ -5,6 +5,7 @@ import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/github-dark.css';
 import type { ArticleMeta } from './types';
 import { useArticleContent } from './useArticleContent';
+import { P10kInfoLine, P10kArrow } from './P10kPrompt';
 
 interface ArticleTabProps {
   slug: string;
@@ -18,6 +19,13 @@ const ArticleTab: React.FC<ArticleTabProps> = ({ slug, meta, fetchArticle, isAct
 
   return (
     <div className="article-tab" style={{ display: isActive ? 'block' : 'none' }}>
+      <div className="article-p10k-header">
+        <P10kInfoLine showTime={false} />
+        <div className="command-line">
+          <P10kArrow />
+          <span className="command-text">blog {slug}</span>
+        </div>
+      </div>
       <div className="article-viewer">
         {meta && (
           <div className="article-header">
