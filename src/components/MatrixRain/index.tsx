@@ -1,84 +1,14 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import './index.css';
-
-// Character set from the guide: full katakana + latin + digits
-const KATAKANA = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-const LATIN   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const NUMS    = '0123456789';
-const ALPHABET = KATAKANA + LATIN + NUMS;
+import { useMatrixRain } from '@/components/MatrixRain/hooks/useMatrixRain';
 
 interface MatrixRainProps {
   className?: string;
   fontSize?: number;
 }
 
-const MatrixRain: React.FC<MatrixRainProps> = ({
-  className,
-  fontSize = 16,
-}) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let intervalId: ReturnType<typeof setInterval>;
-    let rainDrops: number[] = [];
-
-    const setup = () => {
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      const cols = Math.floor(canvas.width / fontSize);
-
-      // Stagger start positions: half already somewhere in viewport, half above
-      rainDrops = Array.from({ length: cols }, () =>
-        Math.random() > 0.5
-          ? Math.floor(Math.random() * (canvas.height / fontSize))
-          : 0
-      );
-
-      // Fill with background color first
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    };
-
-    const draw = () => {
-      // Semi-transparent overlay creates the fading trail
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-      ctx.font = `${fontSize}px monospace`;
-
-      for (let i = 0; i < rainDrops.length; i++) {
-        const char = ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
-        ctx.fillText(char, i * fontSize, rainDrops[i] * fontSize);
-
-        // Probabilistic reset once a column passes the bottom
-        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          rainDrops[i] = 0;
-        }
-        rainDrops[i]++;
-      }
-    };
-
-    const start = () => {
-      setup();
-      clearInterval(intervalId);
-      intervalId = setInterval(draw, 30);
-    };
-
-    start();
-    window.addEventListener('resize', start);
-
-    return () => {
-      clearInterval(intervalId);
-      window.removeEventListener('resize', start);
-    };
-  }, [fontSize]);
+const MatrixRain: React.FC<MatrixRainProps> = ({ className, fontSize = 16 }) => {
+  const canvasRef = useMatrixRain(fontSize);
 
   return (
     <canvas

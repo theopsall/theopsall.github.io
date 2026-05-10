@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
+import { useBlogCatContent } from './hooks/useBlogCatContent';
 
-interface Props {
+interface BlogCatOutputProps {
   slug: string;
   fetchArticle: (slug: string) => Promise<string>;
 }
 
-const BlogCatOutput: React.FC<Props> = ({ slug, fetchArticle }) => {
-  const [content, setContent] = useState('');
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    fetchArticle(slug)
-      .then(setContent)
-      .catch(() => setError(`cat: ${slug}.md: No such file or directory`));
-  }, [slug, fetchArticle]);
+const BlogCatOutput: React.FC<BlogCatOutputProps> = ({ slug, fetchArticle }) => {
+  const { content, error } = useBlogCatContent(slug, fetchArticle);
 
   if (error) return <p className="text-error">{error}</p>;
   if (!content) return <p className="text-muted-term">Loading…</p>;

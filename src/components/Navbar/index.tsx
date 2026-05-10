@@ -1,5 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FaGithub } from 'react-icons/fa';
+import React from 'react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { Button } from '@/components/ui/button';
+import ExternalLink from '@/components/ExternalLink';
+import { useNavbar } from '@/components/Navbar/hooks/useNavbar';
 import './index.css';
 
 const NAV_LINKS = [
@@ -17,21 +20,12 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ activeCommand, onRunCommand }) => {
-  const [cursorVisible, setCursorVisible] = useState(true);
-  const sessionId = useRef(
-    'sess:0x' + Math.floor(Math.random() * 0xffff).toString(16).toUpperCase().padStart(4, '0')
-  );
-
-  useEffect(() => {
-    const id = setInterval(() => setCursorVisible((v) => !v), 530);
-    return () => clearInterval(id);
-  }, []);
+  const { cursorVisible, sessionId } = useNavbar();
 
   return (
     <nav className="navbar" aria-label="Site navigation">
       <div className="navbar-top-line" />
       <div className="navbar-main-row">
-        {/* Left: prompt */}
         <div className="navbar-left">
           <div className="navbar-led" aria-hidden="true" />
           <span className="navbar-prompt" aria-label="tpsallidas@dev:~$">
@@ -42,58 +36,53 @@ const Navbar: React.FC<NavbarProps> = ({ activeCommand, onRunCommand }) => {
             <span className="navbar-prompt-tilde">~</span>
             <span className="navbar-prompt-dollar">$ </span>
           </span>
-          <div
-            className={`navbar-cursor${cursorVisible ? '' : ' blink-off'}`}
-            aria-hidden="true"
-          />
+          <div className={`navbar-cursor${cursorVisible ? '' : ' blink-off'}`} aria-hidden="true" />
         </div>
 
-        {/* Center: nav links */}
         <div className="navbar-center" role="list">
           {NAV_LINKS.map((link) => {
             const isActive = link.command === activeCommand;
-            return isActive ? (
-              <button
+            return (
+              <Button
                 key={link.id}
-                className="navbar-link-active"
+                variant="ghost"
+                className={isActive ? 'navbar-link-active' : 'navbar-link'}
                 onClick={() => onRunCommand(link.command)}
-                aria-current="page"
+                aria-current={isActive ? 'page' : undefined}
                 role="listitem"
               >
-                <span className="navbar-link-bracket">[</span>
-                <span className="navbar-link-label-active">{link.label}</span>
-                <span className="navbar-link-bracket">]</span>
-              </button>
-            ) : (
-              <button
-                key={link.id}
-                className="navbar-link"
-                onClick={() => onRunCommand(link.command)}
-                role="listitem"
-              >
-                {link.label}
-              </button>
+                {isActive ? (
+                  <>
+                    <span className="navbar-link-bracket">[</span>
+                    <span className="navbar-link-label-active">{link.label}</span>
+                    <span className="navbar-link-bracket">]</span>
+                  </>
+                ) : (
+                  link.label
+                )}
+              </Button>
             );
           })}
         </div>
 
-        {/* Right: session + actions */}
         <div className="navbar-right">
           <span className="navbar-session-chip" aria-label="Session ID">
-            {sessionId.current}
+            {sessionId}
           </span>
-          <a
-            className="navbar-icon-btn"
+          <ExternalLink
             href="https://github.com/theopsall"
-            target="_blank"
-            rel="noopener noreferrer"
+            className="navbar-icon-btn"
             aria-label="GitHub profile"
           >
             <FaGithub size={14} />
-          </a>
-          <button className="navbar-kbd-chip" aria-label="Command palette">
-            ⌘ K
-          </button>
+          </ExternalLink>
+          <ExternalLink
+            href="https://linkedin.com/in/tpsallidas"
+            className="navbar-icon-btn"
+            aria-label="LinkedIn profile"
+          >
+            <FaLinkedin size={14} />
+          </ExternalLink>
         </div>
       </div>
       <div className="navbar-bottom-line" />

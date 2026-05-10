@@ -1,6 +1,7 @@
 import React from 'react';
 import { Terminal, FileText } from 'lucide-react';
-import type { Tab } from './types';
+import { Button } from '@/components/ui/button';
+import type { Tab } from '@/components/Terminal/types';
 
 interface TabBarProps {
   tabs: Tab[];
@@ -20,8 +21,9 @@ const TabBar: React.FC<TabBarProps> = ({ tabs, activeTabId, onSwitchTab, onClose
       const isActive = tab.id === activeTabId;
       const isShell = tab.type === 'shell';
       return (
-        <button
+        <Button
           key={tab.id}
+          variant="ghost"
           className={`cv-tab${isActive ? (isShell ? ' cv-tab-terminal-active' : ' cv-tab-shell-active') : ' cv-tab-inactive-item'}`}
           onClick={() => onSwitchTab(tab.id)}
           type="button"
@@ -32,16 +34,17 @@ const TabBar: React.FC<TabBarProps> = ({ tabs, activeTabId, onSwitchTab, onClose
           <span className="cv-tab-label">{tab.label}</span>
           {isActive && isShell && <span className="cv-tab-dot" />}
           {!isShell && (
-            <button
+            <Button
+              variant="ghost"
               className="cv-tab-close-btn"
               onClick={(e) => { e.stopPropagation(); onCloseTab(tab.id); }}
               aria-label={`Close ${tab.label}`}
               type="button"
             >
               ×
-            </button>
+            </Button>
           )}
-        </button>
+        </Button>
       );
     })}
   </div>

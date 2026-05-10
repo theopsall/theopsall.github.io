@@ -1,3 +1,21 @@
+## React Code Guidelines
+
+All React code in this repo follows strict conventions — see nested CLAUDE.md files for full detail:
+
+- `src/CLAUDE.md` — path aliases, import rules, component placement
+- `src/components/CLAUDE.md` — component authoring rules (the core ruleset)
+- `src/components/ui/CLAUDE.md` — shadcn/ui vendored primitives (do not hand-edit)
+- `src/components/Terminal/CLAUDE.md` — Terminal feature structure map
+
+**Hard rules (enforce in every PR/change):**
+1. Components render only — zero `useState`/`useEffect`/`useMemo`/data-fetch logic inside `index.tsx`.
+2. All logic lives in `<Component>/hooks/useXxx.ts` (one concern per hook).
+3. Hard ceiling of **200 lines** per `.tsx` / `.ts` file. Split before exceeding.
+4. Generic/shared components at `src/components/`. Feature-specific children nested inside the parent dir.
+5. **No raw HTML interactive elements** (`button`, `input`, `select`, `textarea`, `dialog`, `a`) — use shadcn/ui equivalents from `@/components/ui/*`.
+6. **Before adding a new shadcn primitive**: query context7 MCP (`resolve-library-id` → `query-docs` with "shadcn/ui") for the current CLI install command. Never guess component APIs from memory.
+7. **Before non-trivial React work**: invoke skills `pf-frontend-react:react-best-practices` and `vercel-react-best-practices`.
+
 ## graphify
 
 This project has a graphify knowledge graph at graphify-out/.

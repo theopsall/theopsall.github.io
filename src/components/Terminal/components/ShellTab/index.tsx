@@ -1,8 +1,9 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
-import type { ArticleMeta } from './types';
-import { useShell } from './useShell';
-import { P10kInfoLine, P10kArrow, P10kActiveArrow, P10kHint } from './P10kPrompt';
-import BannerTitle from './BannerTitle';
+import { Input } from '@/components/ui/input';
+import { useShell } from './hooks/useShell';
+import { P10kInfoLine, P10kArrow, P10kActiveArrow, P10kHint } from '@/components/Terminal/components/P10kPrompt';
+import BannerTitle from '@/components/Terminal/components/BannerTitle';
+import type { ArticleMeta } from '@/components/Terminal/types';
 
 interface ShellTabProps {
   isActive: boolean;
@@ -27,40 +28,21 @@ const WelcomeBanner: React.FC = () => (
 
 const ShellTab = forwardRef<ShellTabHandle, ShellTabProps>(
   ({ isActive, articles, onOpenArticle, fetchArticle }, ref) => {
-    const {
-      input, suggestion, cwd, history, promptTime, completions,
-      inputRef, bodyRef,
-      handleKeyDown, handleInputChange, focusInput,
-      runCommand,
-    } = useShell(articles, onOpenArticle, fetchArticle, isActive);
+    const { input, suggestion, cwd, history, promptTime, completions, inputRef, bodyRef, handleKeyDown, handleInputChange, focusInput, runCommand } = useShell(articles, onOpenArticle, fetchArticle, isActive);
 
     useImperativeHandle(ref, () => ({ runCommand }), [runCommand]);
 
     return (
-      <div
-        className="shell-tab"
-        style={{ display: isActive ? 'flex' : 'none' }}
-        role="application"
-        aria-label="Terminal shell"
-        onClick={focusInput}
-        onKeyDown={focusInput}
-      >
+      <div className="shell-tab" style={{ display: isActive ? 'flex' : 'none' }} role="application" aria-label="Terminal shell" onClick={focusInput} onKeyDown={focusInput}>
         <div className="terminal-body" ref={bodyRef}>
-          {history.length === 0 && (
-            <div className="shell-banner">
-              <WelcomeBanner />
-            </div>
-          )}
+          {history.length === 0 && <div className="shell-banner"><WelcomeBanner /></div>}
 
           {history.map((item) => (
             <div key={item.id} className="terminal-line">
               {item.command && (
                 <div className="p10k-input-block">
                   <P10kInfoLine time={item.timestamp} cwd={cwd} />
-                  <div className="command-line">
-                    <P10kArrow />
-                    <span className="command-text">{item.command}</span>
-                  </div>
+                  <div className="command-line"><P10kArrow /><span className="command-text">{item.command}</span></div>
                 </div>
               )}
               {item.output && <div className="output">{item.output}</div>}
@@ -72,7 +54,7 @@ const ShellTab = forwardRef<ShellTabHandle, ShellTabProps>(
             <div className="p10k-input-row">
               <P10kActiveArrow />
               <div className="input-ghost-wrapper">
-                <input
+                <Input
                   ref={inputRef}
                   type="text"
                   className="terminal-input"
@@ -82,9 +64,7 @@ const ShellTab = forwardRef<ShellTabHandle, ShellTabProps>(
                   onKeyDown={handleKeyDown}
                   spellCheck={false}
                 />
-                {suggestion && (
-                  <span className="ghost-suggestion">{suggestion.slice(input.length)}</span>
-                )}
+                {suggestion && <span className="ghost-suggestion">{suggestion.slice(input.length)}</span>}
               </div>
             </div>
             <P10kHint />
@@ -92,23 +72,14 @@ const ShellTab = forwardRef<ShellTabHandle, ShellTabProps>(
 
           {completions.isOpen && (
             <div className="zsh-tree">
-              <div className="zsh-tree-header">
-                <span className="zsh-tree-label">{completions.label}</span>
-              </div>
-              {completions.items.map((item, idx) => {
-                const isLast = idx === completions.items.length - 1;
-                const branch = isLast ? '└── ' : '├── ';
-                return (
-                  <div
-                    key={item.value}
-                    className={`zsh-tree-row${idx === completions.index ? ' zsh-tree-row-active' : ''}`}
-                  >
-                    <span className="zsh-tree-branch">{branch}</span>
-                    <span className="zsh-tree-value">{item.value}</span>
-                    {item.desc && <span className="zsh-tree-desc">{item.desc}</span>}
-                  </div>
-                );
-              })}
+              <div className="zsh-tree-header"><span className="zsh-tree-label">{completions.label}</span></div>
+              {completions.items.map((item, idx) => (
+                <div key={item.value} className={`zsh-tree-row${idx === completions.index ? ' zsh-tree-row-active' : ''}`}>
+                  <span className="zsh-tree-branch">{idx === completions.items.length - 1 ? '└── ' : '├── '}</span>
+                  <span className="zsh-tree-value">{item.value}</span>
+                  {item.desc && <span className="zsh-tree-desc">{item.desc}</span>}
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -118,5 +89,4 @@ const ShellTab = forwardRef<ShellTabHandle, ShellTabProps>(
 );
 
 ShellTab.displayName = 'ShellTab';
-
 export default ShellTab;

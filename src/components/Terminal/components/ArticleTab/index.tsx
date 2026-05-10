@@ -3,9 +3,10 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/github-dark.css';
-import type { ArticleMeta } from './types';
-import { useArticleContent } from './useArticleContent';
-import { P10kInfoLine, P10kArrow } from './P10kPrompt';
+import { Badge } from '@/components/ui/badge';
+import type { ArticleMeta } from '@/components/Terminal/types';
+import { useArticleContent } from './hooks/useArticleContent';
+import { P10kInfoLine, P10kArrow } from '@/components/Terminal/components/P10kPrompt';
 
 interface ArticleTabProps {
   slug: string;
@@ -35,7 +36,7 @@ const ArticleTab: React.FC<ArticleTabProps> = ({ slug, meta, fetchArticle, isAct
             </div>
             <div className="article-tags">
               {meta.tags.map((tag) => (
-                <span key={tag} className="article-tag">{tag}</span>
+                <Badge key={tag} variant="secondary" className="article-tag">{tag}</Badge>
               ))}
             </div>
           </div>

@@ -187,6 +187,15 @@
 .cv-exp-company {
   font-size: 14px;
   font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dashed currentColor;
+  transition: opacity 0.15s ease, border-bottom-style 0.15s ease;
+  cursor: pointer;
+}
+
+.cv-exp-company:hover {
+  opacity: 0.75;
+  border-bottom-style: solid;
 }
 
 .cv-exp-dates {
