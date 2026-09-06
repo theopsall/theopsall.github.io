@@ -539,8 +539,15 @@
 .cmd-tree       { padding: 0.5rem 0; font-size: 0.9375rem; line-height: 1.5; }
 .cmd-tree-label { color: var(--term-text-secondary); font-weight: 700; font-size: 1rem; }
 .cmd-tree-title { color: var(--term-text-primary); font-weight: 600; }
+.cmd-tree-company { color: var(--term-accent-blue); font-weight: 600; text-decoration: none; }
+.cmd-tree-company:hover { text-decoration: underline; text-underline-offset: 3px; }
+.cmd-tree-current { color: var(--term-accent-green); font-size: 0.75rem; font-weight: 600; margin-left: 0.65rem; text-transform: uppercase; }
 
 .cmd-tree-row      { display: flex; align-items: baseline; line-height: 1.55; }
+.cmd-tree-highlights { color: var(--term-text-dim); line-height: 1.5; margin: 0.2rem 0 0.5rem; }
+.cmd-tree-highlights > div { padding-left: 1.5rem; }
+.cmd-tree-pipe { color: var(--term-border); display: inline-block; margin-left: -1.5rem; width: 1.5rem; }
+.cmd-tree-bullet { color: var(--term-text-secondary); margin-right: 0.45rem; }
 .cmd-tree-branch   { color: var(--term-border); white-space: pre; user-select: none; flex-shrink: 0; }
 .cmd-tree-group + .cmd-tree-group { margin-top: 0.125rem; }
 

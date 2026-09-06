@@ -97,7 +97,7 @@ export const useShell = (
     }
     if (e.key === 'Enter') { runCommand(input); setInput(''); }
     else if (e.key === 'ArrowRight') { const el = e.target as HTMLInputElement; if (suggestion && el.selectionStart === input.length) { e.preventDefault(); acceptSuggestion(); } }
-    else if (e.key === 'Tab') { e.preventDefault(); if (suggestion) { acceptSuggestion(); return; } const result = completions.open(input); if (!result) return; if ('single' in result) setInput(result.single); else setInput(result.selected); }
+    else if (e.key === 'Tab') { e.preventDefault(); if (suggestion) { acceptSuggestion(); return; } const result = completions.open(input); if (!result) return; if ('single' in result && result.single) setInput(result.single); else if ('selected' in result && result.selected) setInput(result.selected); }
     else if (e.key === 'ArrowUp') { e.preventDefault(); if (cmdHistory.length > 0) { const idx = historyIndex === -1 ? cmdHistory.length - 1 : Math.max(0, historyIndex - 1); setHistoryIndex(idx); setInput(cmdHistory[idx] || ''); } }
     else if (e.key === 'ArrowDown') { e.preventDefault(); if (historyIndex !== -1) { const idx = historyIndex + 1; if (idx >= cmdHistory.length) { setHistoryIndex(-1); setInput(''); } else { setHistoryIndex(idx); setInput(cmdHistory[idx]); } } }
   }, [completions, input, suggestion, acceptSuggestion, cmdHistory, historyIndex, runCommand]);

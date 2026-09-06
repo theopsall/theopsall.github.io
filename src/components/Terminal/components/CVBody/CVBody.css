@@ -183,6 +183,7 @@
 .cv-exp-company {
   font-size: 14px;
   font-weight: 600;
+  color: var(--term-accent-blue) !important;
   text-decoration: none;
   border-bottom: 1px dashed currentColor;
   transition: opacity 0.15s ease, border-bottom-style 0.15s ease;
@@ -201,6 +202,22 @@
   white-space: nowrap;
   flex-shrink: 0;
 }
+
+.cv-exp-current {
+  color: var(--term-accent-green);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.cv-exp-highlights {
+  color: var(--term-text-secondary);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 6px 0 0 22px;
+  padding: 0;
+}
+
+.cv-exp-highlights li { margin: 3px 0; }
 
 .cv-exp-desc {
   color: var(--term-text-secondary);

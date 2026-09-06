@@ -50,9 +50,13 @@ export const buildInfoCommands = (): Record<string, () => React.ReactNode> => ({
                 <span className="cmd-tree-branch">{isLast ? '└── ' : '├── '}</span>
                 <span className="cmd-tree-title">{exp.title}</span>
                 <span className="cmd-tree-key" style={{ marginLeft: '0.4rem' }}>@</span>
-                <ExternalLink href={exp.url} className="text-link" style={{ marginLeft: '0.25rem', fontWeight: 600 }}>{exp.org}</ExternalLink>
+                 {exp.url ? <ExternalLink href={exp.url} className="cmd-tree-company" style={{ marginLeft: '0.25rem' }}>{exp.org}</ExternalLink> : <span className="cmd-tree-company" style={{ marginLeft: '0.25rem' }}>{exp.org}</span>}
+                 {exp.date.includes('Present') && <span className="cmd-tree-current">current</span>}
               </div>
-              <TreeFields fields={[{ key: 'Location', val: exp.location }, { key: 'Period', val: exp.date }, { key: 'Tech', val: exp.tech.join(', ') }]} childPipe={pipe} />
+               <TreeFields fields={[{ key: 'Location', val: exp.location }, ...(exp.companyLocation ? [{ key: 'Company HQ', val: exp.companyLocation }] : []), { key: 'Period', val: exp.date }, ...(exp.project ? [{ key: 'Project', val: exp.project }] : []), { key: 'Tech', val: exp.tech.join(', ') }]} childPipe={pipe} />
+               <div className="cmd-tree-highlights">
+                 {exp.highlights.map((highlight) => <div key={highlight}><span className="cmd-tree-pipe">{pipe}</span><span className="cmd-tree-bullet">•</span>{highlight}</div>)}
+               </div>
             </div>
           );
         })}
@@ -135,7 +139,7 @@ export const buildInfoCommands = (): Record<string, () => React.ReactNode> => ({
       {EXPERIENCE_DATA.map((exp) => (
         <p key={exp.org} className="text-normal">
           {exp.title} <span className="text-muted-term">@</span>{' '}
-          <ExternalLink href={exp.url} className="text-link" style={{ fontWeight: 600 }}>{exp.org}</ExternalLink>
+           {exp.url ? <ExternalLink href={exp.url} className="text-link" style={{ fontWeight: 600 }}>{exp.org}</ExternalLink> : <span className="text-link" style={{ fontWeight: 600 }}>{exp.org}</span>}
           <span className="text-muted-term"> · {exp.date}</span>
         </p>
       ))}

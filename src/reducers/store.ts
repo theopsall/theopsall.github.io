@@ -1,7 +1,8 @@
 import {
   useDispatch as _useDispatch,
 } from "react-redux";
-import { GithubModel } from "services/GithubService/dtos/GithubModel";
+import type { Dispatch } from "redux";
+import type { GithubModel } from "@/services/GithubService/dtos/GithubModel";
 
 export interface IState {
   displayedScreen: string;
@@ -15,7 +16,7 @@ export interface IAction {
 }
 
 export const useDispatch = () => {
-  const dispatch = _useDispatch();
+  const dispatch = _useDispatch<Dispatch<IAction>>();
   return (event: IAction) => {
     dispatch(event);
   };
