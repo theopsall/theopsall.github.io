@@ -19,7 +19,7 @@ export interface ShellTabHandle {
 const WelcomeBanner: React.FC = () => (
   <div className="welcome-banner">
     <BannerTitle />
-    <p className="text-normal">Senior Software Engineer · AI Engineer</p>
+    <p className="text-normal">Senior Software Engineer</p>
     <p className="text-muted-term">
       Type <span className="text-command">help</span> or <span className="text-command">?</span> to see available commands.
     </p>

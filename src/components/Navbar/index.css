@@ -164,7 +164,7 @@
 
 .navbar-icon-btn:hover {
   border-color: rgba(255, 255, 255, 0.2);
-  color: var(--term-text-zinc);
+  color: var(--term-text-secondary);
 }
 
 .navbar-kbd-chip {

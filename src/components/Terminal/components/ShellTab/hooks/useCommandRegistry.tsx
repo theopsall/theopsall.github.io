@@ -22,8 +22,8 @@ export const TreeFields: React.FC<{ fields: { key: string; val: string }[]; chil
 export const buildInfoCommands = (): Record<string, () => React.ReactNode> => ({
   about: () => (
     <div className="command-output">
-      <p className="text-highlight">Theodoros Psallidas</p>
-      <p className="text-normal">Senior Software Engineer &amp; AI Engineer</p>
+      <BannerTitle />
+      <p className="text-normal">Senior Software Engineer</p>
       <p className="text-muted-term">Passionate about audiovisual data analysis and machine learning, specializing in multimodal video summarization.</p>
       <br />
       <p className="text-normal">Location   — Athens, Greece</p>
@@ -154,13 +154,13 @@ export const buildInfoCommands = (): Record<string, () => React.ReactNode> => ({
   banner: () => (
     <div className="welcome-banner">
       <BannerTitle />
-      <p className="text-normal">Senior Software Engineer · AI Engineer</p>
+      <p className="text-normal">Senior Software Engineer</p>
     </div>
   ),
   home: () => (
     <div className="command-output">
       <BannerTitle />
-      <p className="text-normal">Senior Software Engineer · AI Engineer</p>
+      <p className="text-normal">Senior Software Engineer</p>
       <p className="text-muted-term" style={{ marginTop: '0.5rem' }}>
         Type <span className="text-command">help</span> or <span className="text-command">?</span> to see available commands.
       </p>

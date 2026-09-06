@@ -1,10 +1,15 @@
 import React from 'react';
 import { CVPrompt } from '../helpers';
 
+const _now = new Date();
+const _days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const _months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const SESSION_LOGIN = `${_days[_now.getDay()]} ${_months[_now.getMonth()]} ${String(_now.getDate()).padStart(2, ' ')} ${String(_now.getHours()).padStart(2, '0')}:${String(_now.getMinutes()).padStart(2, '0')}:${String(_now.getSeconds()).padStart(2, '0')}`;
+
 const Intro: React.FC = () => (
   <>
     <p className="cv-intro">
-      Last login: Thu Apr 23 14:31:42 on ttys002 · Welcome to tpsallidas.dev //&nbsp; cv-runtime v2.7.1
+      Last login: {SESSION_LOGIN} on ttys002 · Welcome to tpsallidas.dev //&nbsp; cv-runtime v2.7.1
     </p>
     <CVPrompt cmd="whoami --bio" />
     <p className="cv-output-bright">

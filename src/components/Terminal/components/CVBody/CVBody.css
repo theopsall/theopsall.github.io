@@ -139,15 +139,11 @@
   gap: 6px;
   width: 100%;
   box-sizing: border-box;
-  border-style: solid;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 2px;
+  border: 1px solid;
 }
 
 .cv-exp-card-active {
-  border-color: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 .cv-exp-card-dim {
@@ -223,7 +219,7 @@
 }
 
 .cv-exp-stack {
-  color: rgba(163, 163, 163, 0.73);
+  color: var(--term-text-faint);
   font-size: 11px;
   font-weight: 400;
   margin: 0;
@@ -324,7 +320,7 @@
   width: 10px;
   height: 18px;
   background: var(--term-text-primary);
-  box-shadow: 0 0 8px rgba(0, 255, 136, 0.667);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
   transition: opacity 0s;
 }
 
