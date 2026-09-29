@@ -15,10 +15,9 @@ export interface ArticleManifest {
 
 export interface Tab {
   id: string;
-  type: 'shell' | 'article' | 'nav';
+  type: 'shell' | 'article';
   label: string;
   slug?: string;
-  command?: string;
 }
 
 export interface TabState {
@@ -28,7 +27,6 @@ export interface TabState {
 
 export type TabAction =
   | { type: 'OPEN_ARTICLE'; slug: string; title: string }
-  | { type: 'OPEN_NAV'; command: string; label: string }
   | { type: 'CLOSE_TAB'; id: string }
   | { type: 'SWITCH_TAB'; id: string };
 

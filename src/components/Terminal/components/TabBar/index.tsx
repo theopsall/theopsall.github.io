@@ -15,7 +15,7 @@ const TabIcon: React.FC<{ type: Tab['type'] }> = ({ type }) => {
   return <FileText size={12} className="cv-tab-icon" />;
 };
 
-const TabBar: React.FC<TabBarProps> = ({ tabs, activeTabId, onSwitchTab, onCloseTab }) => (
+const TabBar: React.FC<TabBarProps> = ({ tabs, activeTabId, onSwitchTab, onCloseTab }) => tabs.length < 2 ? null : (
   <div className="cv-tab-strip">
     {tabs.map((tab) => {
       const isActive = tab.id === activeTabId;

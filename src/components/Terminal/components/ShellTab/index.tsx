@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
 import { Input } from '@/components/ui/input';
 import { useShell } from './hooks/useShell';
-import { P10kInfoLine, P10kArrow, P10kActiveArrow, P10kHint } from '@/components/Terminal/components/P10kPrompt';
+import { P10kInfoLine, P10kArrow, P10kActiveArrow } from '@/components/Terminal/components/P10kPrompt';
 import BannerTitle from '@/components/Terminal/components/BannerTitle';
 import type { ArticleMeta } from '@/components/Terminal/types';
 
@@ -19,7 +19,7 @@ export interface ShellTabHandle {
 const WelcomeBanner: React.FC = () => (
   <div className="welcome-banner">
     <BannerTitle />
-    <p className="text-normal">Senior Software Engineer</p>
+    <p className="text-normal">Senior Software Engineer, ProxyFoods</p>
     <p className="text-muted-term">
       Type <span className="text-command">help</span> or <span className="text-command">?</span> to see available commands.
     </p>
@@ -33,8 +33,8 @@ const ShellTab = forwardRef<ShellTabHandle, ShellTabProps>(
     useImperativeHandle(ref, () => ({ runCommand }), [runCommand]);
 
     return (
-      <div className="shell-tab" style={{ display: isActive ? 'flex' : 'none' }} role="application" aria-label="Terminal shell" onClick={focusInput} onKeyDown={focusInput}>
-        <div className="terminal-body" ref={bodyRef}>
+      <div className="shell-tab" style={{ display: isActive ? 'flex' : 'none' }} role="group" aria-label="Terminal shell" onClick={focusInput}>
+        <div className="terminal-body" ref={bodyRef} role="log" aria-live="polite">
           {history.length === 0 && <div className="shell-banner"><WelcomeBanner /></div>}
 
           {history.map((item) => (
@@ -63,11 +63,11 @@ const ShellTab = forwardRef<ShellTabHandle, ShellTabProps>(
                   onChange={(e) => handleInputChange(e.target.value)}
                   onKeyDown={handleKeyDown}
                   spellCheck={false}
+                  aria-label="Shell command"
                 />
                 {suggestion && <span className="ghost-suggestion">{suggestion.slice(input.length)}</span>}
               </div>
             </div>
-            <P10kHint />
           </div>
 
           {completions.isOpen && (

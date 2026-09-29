@@ -4,7 +4,7 @@ const formatTime = (d: Date) =>
   d.toLocaleTimeString('en-GB', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
 export const P10kInfoLine: React.FC<{ showTime?: boolean; time?: Date; cwd?: string }> = ({
-  showTime = true,
+  showTime = false,
   time,
   cwd = '~',
 }) => (
@@ -19,13 +19,6 @@ export const P10kInfoLine: React.FC<{ showTime?: boolean; time?: Date; cwd?: str
         <span className="p10k-seg-text">at {time ? formatTime(time) : ''}</span>
       </span>
     )}
-  </div>
-);
-
-export const P10kHint: React.FC = () => (
-  <div className="p10k-hint">
-    Type <span className="p10k-hint-key">&apos;#&apos;</span> for AI or{' '}
-    <span className="p10k-hint-key">ctrl-r</span> for command search
   </div>
 );
 

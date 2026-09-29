@@ -81,7 +81,7 @@ export const useCommands = (
     if (trimmed.startsWith('cd ')) return { output: <div className="command-output"><p className="text-error">cd: {trimmed.slice(3).trim()}: No such directory</p></div> };
     if (trimmed === 'blog' || trimmed.startsWith('blog ')) return { output: handleBlogCommand(trimmed === 'blog' ? '' : trimmed.slice(5)) };
     if (trimmed === 'cat' || trimmed.startsWith('cat ')) return { output: handleCatCommand(raw.slice(3).trim()) };
-    if (trimmed.startsWith('echo ')) return { output: <div className="command-output"><p className="text-normal">{raw.slice(5)}</p></div> };
+    if (trimmed === 'echo' || trimmed.startsWith('echo ')) return { output: <div className="command-output"><p className="text-normal">{raw.trim().slice(5)}</p></div> };
     if (trimmed === '?') return { output: commands['help']() };
     if (commands[trimmed]) return { output: commands[trimmed]() };
     return { output: <div className="command-output"><p className="text-error">Command not found: {cmd}</p><p className="text-muted-term">Type <span className="text-command">help</span> or <span className="text-command">?</span> to see available commands.</p></div> };

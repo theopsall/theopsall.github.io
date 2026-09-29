@@ -1,9 +1,5 @@
 import React from 'react';
 
-const BannerTitle: React.FC = () => (
-  <div className="banner-pixel-wrap">
-    <span className="banner-pixel-full">Theodoros Psallidas</span>
-  </div>
-);
+const BannerTitle: React.FC = () => <p className="banner-name">Theodoros Psallidas</p>;
 
 export default BannerTitle;

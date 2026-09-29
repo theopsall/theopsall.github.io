@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-29T12:29:53.232226+00:00",
+  "title": "Design System: Theodoros Psallidas Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "amber": {
+        "role": "primary",
+        "displayName": "Signal Amber",
+        "canonical": "#f0b04a",
+        "tonalRamp": [
+          "#2b1f0b",
+          "#4f3a13",
+          "#74561c",
+          "#997325",
+          "#c0902f",
+          "#f0b04a",
+          "#f6c26b",
+          "#fbe3b8"
+        ]
+      },
+      "amber-hover": {
+        "role": "primary",
+        "displayName": "Lifted Amber",
+        "canonical": "#f6c26b",
+        "tonalRamp": [
+          "#2b1f0b",
+          "#4f3a13",
+          "#74561c",
+          "#997325",
+          "#c0902f",
+          "#f0b04a",
+          "#f6c26b",
+          "#fbe3b8"
+        ]
+      },
+      "ink-base": {
+        "role": "neutral",
+        "displayName": "Cool Near-Black",
+        "canonical": "#0b0c0e",
+        "tonalRamp": [
+          "#0b0c0e",
+          "#0f1115",
+          "#14161b",
+          "#1a1d24",
+          "#242832",
+          "#343945",
+          "#5a5f6d",
+          "#9d9da8"
+        ]
+      },
+      "ink-surface": {
+        "role": "neutral",
+        "displayName": "Shell Body",
+        "canonical": "#0f1115",
+        "tonalRamp": [
+          "#0b0c0e",
+          "#0f1115",
+          "#14161b",
+          "#1a1d24",
+          "#242832",
+          "#343945",
+          "#5a5f6d",
+          "#9d9da8"
+        ]
+      },
+      "ink-elevated": {
+        "role": "neutral",
+        "displayName": "Elevated Ink",
+        "canonical": "#14161b",
+        "tonalRamp": [
+          "#0b0c0e",
+          "#0f1115",
+          "#14161b",
+          "#1a1d24",
+          "#242832",
+          "#343945",
+          "#5a5f6d",
+          "#9d9da8"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#242832",
+        "tonalRamp": [
+          "#0b0c0e",
+          "#0f1115",
+          "#14161b",
+          "#1a1d24",
+          "#242832",
+          "#343945",
+          "#5a5f6d",
+          "#9d9da8"
+        ]
+      },
+      "hairline-strong": {
+        "role": "neutral",
+        "displayName": "Strong Hairline",
+        "canonical": "#343945",
+        "tonalRamp": [
+          "#0b0c0e",
+          "#0f1115",
+          "#14161b",
+          "#1a1d24",
+          "#242832",
+          "#343945",
+          "#5a5f6d",
+          "#9d9da8"
+        ]
+      },
+      "text-primary": {
+        "role": "neutral",
+        "displayName": "Bright Text",
+        "canonical": "#f4f4f5",
+        "tonalRamp": [
+          "#9d9da8",
+          "#a0a0ab",
+          "#b0b0ba",
+          "#c2c2ca",
+          "#d6d6db",
+          "#e6e6ea",
+          "#f4f4f5",
+          "#ffffff"
+        ]
+      },
+      "text-secondary": {
+        "role": "neutral",
+        "displayName": "Body Text",
+        "canonical": "#d6d6db",
+        "tonalRamp": [
+          "#9d9da8",
+          "#a0a0ab",
+          "#b0b0ba",
+          "#c2c2ca",
+          "#d6d6db",
+          "#e6e6ea",
+          "#f4f4f5",
+          "#ffffff"
+        ]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Muted Text",
+        "canonical": "#b0b0ba",
+        "tonalRamp": [
+          "#9d9da8",
+          "#a0a0ab",
+          "#b0b0ba",
+          "#c2c2ca",
+          "#d6d6db",
+          "#e6e6ea",
+          "#f4f4f5",
+          "#ffffff"
+        ]
+      },
+      "text-dim": {
+        "role": "neutral",
+        "displayName": "Dim Text",
+        "canonical": "#a0a0ab",
+        "tonalRamp": [
+          "#9d9da8",
+          "#a0a0ab",
+          "#b0b0ba",
+          "#c2c2ca",
+          "#d6d6db",
+          "#e6e6ea",
+          "#f4f4f5",
+          "#ffffff"
+        ]
+      },
+      "text-faint": {
+        "role": "neutral",
+        "displayName": "Faint Text",
+        "canonical": "#9d9da8",
+        "tonalRamp": [
+          "#9d9da8",
+          "#a0a0ab",
+          "#b0b0ba",
+          "#c2c2ca",
+          "#d6d6db",
+          "#e6e6ea",
+          "#f4f4f5",
+          "#ffffff"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "name": {
+        "displayName": "Name",
+        "purpose": "The h1 only, Geist Mono."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Masthead statement."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section h2s."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Prose, Geist."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "All buttons."
+      },
+      "code-current": {
+        "displayName": "Code (current role)",
+        "purpose": "Current role source lines."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Source lines, notes, education, contact labels."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Entrance and chevron rotation."
+      },
+      {
+        "name": "dx-in",
+        "value": "480ms, delay calc(var(--i) * 80ms + 150ms), translateY(6px) + fade",
+        "purpose": "The only entrance: staggered lines and notes of the current role, under prefers-reduced-motion: no-preference."
+      },
+      {
+        "name": "chevron",
+        "value": "200ms",
+        "purpose": "Role head chevron rotation."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow",
+        "value": "640px"
+      },
+      {
+        "name": "pair",
+        "value": "800px"
+      }
+    ],
+    "focus": {
+      "value": "2px solid #f0b04a, offset 3px, no shadow",
+      "purpose": "Focus ring on every control."
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single amber action (Download CV).",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Download CV</button>",
+      "css": ".ds-btn{min-height:44px;padding:0 20px;font:500 15px Geist,system-ui,sans-serif;border-radius:4px;cursor:pointer;} .ds-btn:focus-visible{outline:2px solid var(--term-accent-amber,#f0b04a);outline-offset:3px;} .ds-btn-primary{background:#f0b04a;border:1px solid #f0b04a;color:#0b0c0e;} .ds-btn-primary:hover{background:#f6c26b;}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ghost button with strong-hairline border (Email, Open shell).",
+      "html": "<button class=\"ds-btn ds-btn-secondary\">Open shell</button>",
+      "css": ".ds-btn{min-height:44px;padding:0 20px;font:500 15px Geist,system-ui,sans-serif;border-radius:4px;cursor:pointer;} .ds-btn:focus-visible{outline:2px solid var(--term-accent-amber,#f0b04a);outline-offset:3px;} .ds-btn-secondary{background:transparent;border:1px solid #343945;color:#d6d6db;} .ds-btn-secondary:hover{background:#14161b;color:#f4f4f5;}"
+    },
+    {
+      "name": "Role Diagnostic",
+      "kind": "custom",
+      "refersTo": "role-line",
+      "description": "Signature block: head, location line, numbered source lines with wavy annotated spans, note lines.",
+      "html": "<article class=\"ds-dx\"><div class=\"ds-head\"><span class=\"ds-level\">current</span> <b>Senior Software Engineer</b></div><p class=\"ds-where\"><span class=\"ds-arrow\">--&gt;</span>ProxyFoods · Feb 2025 - Present</p><ol class=\"ds-lines\"><li><span class=\"ds-gutter\">1</span><span class=\"ds-code\">Built the <mark class=\"ds-mark\">LangGraph</mark> agents.</span></li></ol><ul class=\"ds-notes\"><li><span class=\"ds-eq\">=</span> <span class=\"ds-key\">note:</span> LangGraph — agent orchestration</li></ul></article>",
+      "css": ".ds-dx{font:16px/1.7 'Geist Mono',ui-monospace,monospace;color:#d6d6db;} .ds-head b{color:#f4f4f5;font-weight:600;} .ds-level{color:#f0b04a;font-weight:600;} .ds-where{margin:0;color:#a0a0ab;} .ds-arrow{color:#9d9da8;margin-right:1ch;} .ds-lines{list-style:none;margin:8px 0 0;padding:0;} .ds-lines li{display:grid;grid-template-columns:3ch 1fr;} .ds-gutter{text-align:right;padding-right:1.25ch;color:#9d9da8;border-right:1px solid #343945;} .ds-code{padding-left:1.5ch;} .ds-mark{background:none;color:#f4f4f5;text-decoration:underline wavy #f0b04a;text-decoration-thickness:1.5px;text-underline-offset:5px;} .ds-notes{list-style:none;margin:8px 0 0;padding:0 0 0 3ch;color:#a0a0ab;} .ds-eq{color:#9d9da8;} .ds-key{color:#f0b04a;font-weight:600;}"
+    },
+    {
+      "name": "Link",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Bright text with amber underline.",
+      "html": "<a class=\"ds-link\" href=\"#\">github.com/theopsall</a>",
+      "css": ".ds-link{color:#f4f4f5;text-decoration:underline;text-decoration-color:#f0b04a;text-underline-offset:4px;display:inline-block;padding:11px 0;} .ds-link:hover{color:#f0b04a;} .ds-link:focus-visible{outline:2px solid #f0b04a;outline-offset:3px;}"
+    },
+    {
+      "name": "Shell Dock Prompt",
+      "kind": "custom",
+      "refersTo": "dock-prompt",
+      "description": "Closed-state shell entry that mounts the real shell when opened.",
+      "html": "<button class=\"ds-dock\"><span class=\"ds-arrow2\">❯</span> <span>try <code>ps</code>, <code>help</code> or <code>cat about.md</code></span></button>",
+      "css": ".ds-dock{display:flex;gap:8px;width:100%;min-height:48px;padding:12px 16px;font:15px 'Geist Mono',monospace;text-align:left;color:#d6d6db;background:#0f1115;border:1px solid #242832;border-radius:4px;cursor:pointer;} .ds-dock:hover{background:#14161b;color:#f4f4f5;} .ds-dock code{color:#f4f4f5;font-weight:600;} .ds-arrow2{color:#f0b04a;} .ds-dock:focus-visible{outline:2px solid #f0b04a;outline-offset:3px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Compiler Diagnostics",
+    "overview": "The page reads the way a compiler reports on a codebase: each job is a diagnostic block, its highlights are numbered source lines, and the phrases that matter are underlined and explained by `= note:` lines beneath. The world's own materials are used natively: monospace, a line-number gutter with a hairline, a `-->` location arrow, wavy underlines, and `= note:` / `= stack:` keys. The current role opens first and is the only block that moves.\n\nThe surface is cool near-black with a single amber accent. Everything else is grayscale text that clears 7:1 (WCAG AAA) on the page background. Density is calm: a 68rem column, generous section gaps, no cards, no shadows. It rejects the generic template portfolio (hero, cards, skill bars), hacker green-on-black, and flashy motion, per PRODUCT.md.",
+    "keyCharacteristics": [
+      "One accent (amber) on cool near-black; rarity is the point.",
+      "Geist Mono carries identity and anything code-like; Geist carries reading and UI.",
+      "Flat, hairline-bounded, tonal depth only.",
+      "Terminal motifs behave truthfully; the shell below is real and mounts only when opened.",
+      "44px minimum tap targets, visible amber focus ring, motion gated on reduced-motion preference."
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "body": "Amber is the only chromatic color. It marks interaction, focus, and annotation. Never use it as decoration or as a fill on more than the single primary action.",
+        "section": "colors"
+      },
+      {
+        "name": "The Legible Ladder Rule",
+        "body": "Every text token must hold at least 7:1 (WCAG AAA) on the page background; the faintest step measures 7.29:1. Hierarchy comes from steps in this ladder and from weight, never from dropping below it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Machine Voice Rule",
+        "body": "If a string is something a tool would print (a role, a location, a degree, a note), set it in Geist Mono. If a person would read it as prose, set it in Geist.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Nothing casts a shadow. A new surface separates itself with a hairline or a tonal step.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep amber as the single accent and use it for interaction, focus, and annotation only.",
+      "**Do** set machine-printed strings in Geist Mono and prose in Geist.",
+      "**Do** keep every text token at or above 7:1 (WCAG AAA) on #0b0c0e.",
+      "**Do** give every interactive target at least 44px (2.75rem) of height, padding the hit area when the visible text is smaller.",
+      "**Do** separate surfaces with a 1px hairline or a tonal step, and keep the surface flat.",
+      "**Do** gate any new motion on `prefers-reduced-motion: no-preference`, and keep the staggered current-role entrance the only entrance.",
+      "**Do** use the 2px amber outline at 3px offset for focus on every new control."
+    ],
+    "donts": [
+      "**Don't** add shadows, cards, skill bars, or a hero-and-cards layout.",
+      "**Don't** introduce a second accent hue; the blue and green shell-prompt tokens are not part of this system.",
+      "**Don't** claim a feature the build lacks: annotations restate facts already in the role's highlights, and the shell must behave for real.",
+      "**Don't** hard-code new colors in components; reference the palette tokens.",
+      "**Don't** use text below the Legible Ladder to signal de-emphasis."
+    ]
+  }
+}

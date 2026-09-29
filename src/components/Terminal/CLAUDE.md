@@ -7,16 +7,13 @@
 
 ```
 Terminal/
-  index.tsx                    # render only — composes sub-components
+  index.tsx                    # docked shell window; mounted by Portfolio/ShellDock
   constants.ts                 # shared constants (commands list, paths, etc.)
   types.ts                     # shared TypeScript types
   hooks/                       # hooks shared across Terminal sub-components
-    useStatusBar.ts
     useTabs.ts
     useArticles.ts
   components/
-    StatusBar/
-      index.tsx
     TabBar/
       index.tsx
     BannerTitle/
@@ -36,15 +33,6 @@ Terminal/
       index.tsx
       hooks/
         useArticleContent.ts
-    NavTab/
-      index.tsx
-    CVBody/
-      index.tsx                # composes section components
-      sections/
-        Header.tsx
-        Experience.tsx
-        Education.tsx
-        Skills.tsx
 ```
 
 ## Rules specific to Terminal

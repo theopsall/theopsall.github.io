@@ -23,8 +23,8 @@ export const buildInfoCommands = (): Record<string, () => React.ReactNode> => ({
   about: () => (
     <div className="command-output">
       <BannerTitle />
-      <p className="text-normal">Senior Software Engineer</p>
-      <p className="text-muted-term">Passionate about audiovisual data analysis and machine learning, specializing in multimodal video summarization.</p>
+      <p className="text-normal">Senior Software Engineer, ProxyFoods</p>
+      <p className="text-muted-term">Audiovisual data analysis and machine learning, specializing in multimodal video summarization.</p>
       <br />
       <p className="text-normal">Location   — Athens, Greece</p>
       <p className="text-normal">Research   — PhD Candidate, Video Summarization @ University of Thessaly</p>
@@ -35,7 +35,7 @@ export const buildInfoCommands = (): Record<string, () => React.ReactNode> => ({
     </div>
   ),
   whoami: () => (
-    <div className="command-output"><p className="text-command">theodoros@portfolio ~ %</p></div>
+    <div className="command-output"><p className="text-command">theopsall@portfolio</p></div>
   ),
   experience: () => (
     <div className="command-output">
@@ -158,13 +158,13 @@ export const buildInfoCommands = (): Record<string, () => React.ReactNode> => ({
   banner: () => (
     <div className="welcome-banner">
       <BannerTitle />
-      <p className="text-normal">Senior Software Engineer</p>
+      <p className="text-normal">Senior Software Engineer, ProxyFoods</p>
     </div>
   ),
   home: () => (
     <div className="command-output">
       <BannerTitle />
-      <p className="text-normal">Senior Software Engineer</p>
+      <p className="text-normal">Senior Software Engineer, ProxyFoods</p>
       <p className="text-muted-term" style={{ marginTop: '0.5rem' }}>
         Type <span className="text-command">help</span> or <span className="text-command">?</span> to see available commands.
       </p>

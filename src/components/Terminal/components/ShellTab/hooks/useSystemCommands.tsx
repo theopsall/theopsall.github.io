@@ -1,6 +1,6 @@
 import React from 'react';
 import type { ArticleMeta } from '@/components/Terminal/types';
-import { HOME_FILES, HOME_DIRS, PROCESS_DATA } from '@/components/Terminal/constants';
+import { HOME_FILES, HOME_DIRS, PROCESS_DATA, COMMAND_DESCRIPTIONS } from '@/components/Terminal/constants';
 
 export const buildSystemCommands = (
   articles: ArticleMeta[],
@@ -10,8 +10,8 @@ export const buildSystemCommands = (
     <div className="command-output">
       <p className="text-highlight">Available commands:</p>
       <div className="command-list">
-        {['about', 'experience', 'education', 'skills', 'contact', 'projects', 'blog', 'cd blog', 'cd ..', 'ls', 'cat <file>', 'clear', 'whoami', 'ps', 'banner', '?'].map((cmd) => (
-          <div key={cmd}><span className="text-command">{cmd}</span></div>
+        {Object.entries(COMMAND_DESCRIPTIONS).filter(([cmd]) => cmd !== '?').map(([cmd, desc]) => (
+          <div key={cmd}><span className="text-command">{cmd}</span><span className="text-muted-term">{desc}</span></div>
         ))}
       </div>
     </div>
@@ -38,26 +38,23 @@ export const buildSystemCommands = (
   },
   sudo: () => (
     <div className="command-output">
-      <p className="text-error">Nice try! 😄</p>
-      <p className="text-muted-term">theodoros is not in the sudoers file. This incident will be reported.</p>
+      <p className="text-error">Nice try.</p>
+      <p className="text-muted-term">theopsall is not in the sudoers file. This incident will be reported.</p>
     </div>
   ),
   exit: () => (
     <div className="command-output">
-      <p className="text-muted-term">Thanks for visiting! 👋</p>
-      <p className="text-normal">But you can't actually exit... this is the web! 😉</p>
+      <p className="text-muted-term">Thanks for visiting.</p>
+      <p className="text-normal">There is no exit. This is a web page.</p>
     </div>
   ),
   pwd: () => (
     <div className="command-output">
-      <p className="text-normal">/home/theodoros/portfolio{cwd === '~/blog' ? '/blog' : ''}</p>
+      <p className="text-normal">/home/theopsall/portfolio{cwd === '~/blog' ? '/blog' : ''}</p>
     </div>
   ),
   date: () => (
     <div className="command-output"><p className="text-normal">{new Date().toString()}</p></div>
-  ),
-  echo: () => (
-    <div className="command-output"><p className="text-muted-term">Usage: echo is not implemented yet. But I hear you! 📢</p></div>
   ),
   ps: () => {
     const now = new Date();
