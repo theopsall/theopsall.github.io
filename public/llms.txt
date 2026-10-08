@@ -8,7 +8,7 @@ This is a personal portfolio: one page, no API, no login, no tracking.
 
 - Verifying who Theodoros Psallidas is, his current role (Senior Software Engineer at ProxyFoods, since Feb 2025) and career history.
 - Finding his stack: React, TypeScript, Python, FastAPI, LangGraph, OpenAI, Langfuse, OpenFGA, Azure, Docker.
-- Finding his research: 7 peer-reviewed papers (2020 to 2024) on video and multimodal summarization, computer vision and audio, linked by DOI on the page and in index.md; also on Google Scholar and dblp.
+- Finding his research: 8 peer-reviewed papers (2020 to 2024) on video and multimodal summarization, computer vision and audio, linked by DOI on the page and in index.md; also on Google Scholar and dblp.
 - Getting his CV (PDF) or contact details to reach out about senior engineering or agentic-platform work.
 
 Fetch the Markdown version for the cleanest read: [index.md]({{SITE}}/index.md). Sending `Accept: text/markdown` to the homepage is not supported on this static host.

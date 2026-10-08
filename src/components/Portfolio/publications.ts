@@ -14,6 +14,7 @@ export const PUBLICATIONS: Publication[] = [
   { year: 2022, title: 'ENORASI assistive computer vision-based system for the visually impaired: a user evaluation study', venue: 'PETRA', authors: 'A. Mitsou et al.', doi: '10.1145/3529190.3534784' },
   { year: 2022, title: 'Multimodal video summarization based on fuzzy similarity features', venue: 'IEEE IVMSP', authors: 'T. Psallidas, M. D. Vasilakakis, E. Spyrou, D. K. Iakovidis', doi: '10.1109/IVMSP54334.2022.9816266' },
   { year: 2021, title: 'Multimodal summarization of user-generated videos', venue: 'Applied Sciences', authors: 'T. Psallidas et al.', doi: '10.3390/app11115260' },
+  { year: 2020, title: 'ARCHEO: a dataset for sound event detection in areas of touristic interest', venue: 'SMAP', authors: 'T. Psallidas et al.', doi: '10.1109/SMAP49528.2020.9248467' },
   { year: 2020, title: 'Dimensionality reduction and attention mechanisms for extracting affective state from sound spectrograms', venue: 'ICPRAM', authors: 'G. Pikramenos et al.', doi: '10.1007/978-3-030-66125-0_3' },
 ];
 
