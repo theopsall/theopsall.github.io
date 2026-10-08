@@ -1,0 +1,39 @@
+# Theodoros Psallidas
+
+> Senior Software Engineer at ProxyFoods, building frontier agentic platforms with LangGraph, RAG and OpenFGA. PhD candidate in Computer Science at the University of Thessaly. Based in Athens, Greece.
+
+This is a personal portfolio: one page, no API, no login, no tracking.
+
+## When to use this site
+
+- Verifying who Theodoros Psallidas is, his current role (Senior Software Engineer at ProxyFoods, since Feb 2025) and career history.
+- Finding his stack: React, TypeScript, Python, FastAPI, LangGraph, OpenAI, Langfuse, OpenFGA, Azure, Docker.
+- Finding his research: 7 peer-reviewed papers (2020 to 2024) on video and multimodal summarization, computer vision and audio, linked by DOI on the page and in index.md; also on Google Scholar and dblp.
+- Getting his CV (PDF) or contact details to reach out about senior engineering or agentic-platform work.
+
+Fetch the Markdown version for the cleanest read: [index.md](https://theopsall.github.io/tpsallidas/index.md). Sending `Accept: text/markdown` to the homepage is not supported on this static host.
+
+## Pages
+
+- [Home (HTML)](https://theopsall.github.io/tpsallidas/): experience, education, contact
+- [Home (Markdown)](https://theopsall.github.io/tpsallidas/index.md): the same content as plain Markdown
+- [CV (PDF)](https://theopsall.github.io/tpsallidas/Theodoros_Psallidas_CV.pdf)
+- [Sitemap](https://theopsall.github.io/tpsallidas/sitemap.xml)
+
+## Open source
+
+- [Video-Summarization](https://github.com/theopsall/Video-Summarization): MSc thesis code and dataset, multimodal video summarization
+- [multiSmote](https://github.com/theopsall/multiSmote): multi-label SMOTE
+- [deep_video_extraction](https://github.com/theopsall/deep_video_extraction): deep audio and visual feature extraction
+- [video_annotator](https://github.com/theopsall/video_annotator): video shot annotation web app
+
+## Profiles
+
+- [GitHub](https://github.com/theopsall)
+- [LinkedIn](https://www.linkedin.com/in/tpsallidas)
+- [Google Scholar](https://scholar.google.com/citations?user=478yYkIAAAAJ)
+- [dblp](https://dblp.org/pid/278/8810.html)
+
+## Contact
+
+theopsall@gmail.com
