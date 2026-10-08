@@ -15,7 +15,7 @@ Remote · Greece · Feb 2025 - Present
 
 Stack: React 19, TypeScript, FastAPI, Python, LangGraph, OpenAI, Langfuse, OpenFGA, SQLAlchemy, Azure SQL, Docker, Azure, OpenTelemetry
 
-### ML Engineer & Software Developer, MyTripMyWay
+### ML Engineer & Software Developer, [MyTripMyWay](https://mytripmyway.uth.gr/)
 Greece · Jun 2025 - Mar 2026
 
 - Persona-based recommendations with six interpretable travel personas and itinerary feasibility modeling.
