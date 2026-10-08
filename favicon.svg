@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#0d1117"/>
-  <rect x="2" y="2" width="60" height="60" rx="10" fill="none" stroke="#30363d" stroke-width="2"/>
-  <polyline points="16,22 28,32 16,42" fill="none" stroke="#58a6ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="32" y1="42" x2="48" y2="42" stroke="#7ee787" stroke-width="4" stroke-linecap="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#000"/><rect x=".5" y=".5" width="31" height="31" rx="6.5" fill="none" stroke="#333"/><g fill="#ededed"><circle cx="5.80" cy="9.20" r="1.4"/><circle cx="9.20" cy="9.20" r="1.4"/><circle cx="12.60" cy="9.20" r="1.4"/><circle cx="9.20" cy="12.60" r="1.4"/><circle cx="9.20" cy="16.00" r="1.4"/><circle cx="9.20" cy="19.40" r="1.4"/><circle cx="9.20" cy="22.80" r="1.4"/><circle cx="19.40" cy="9.20" r="1.4"/><circle cx="22.80" cy="9.20" r="1.4"/><circle cx="26.20" cy="9.20" r="1.4"/><circle cx="19.40" cy="12.60" r="1.4"/><circle cx="26.20" cy="12.60" r="1.4"/><circle cx="19.40" cy="16.00" r="1.4"/><circle cx="22.80" cy="16.00" r="1.4"/><circle cx="26.20" cy="16.00" r="1.4"/><circle cx="19.40" cy="19.40" r="1.4"/><circle cx="19.40" cy="22.80" r="1.4"/></g></svg>
