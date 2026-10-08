@@ -64,6 +64,7 @@ Stack: PyTorch, scikit-learn, Python, Computer Vision, Multimodal ML
 - 2022. [ENORASI assistive computer vision-based system for the visually impaired: a user evaluation study](https://doi.org/10.1145/3529190.3534784). A. Mitsou et al., PETRA
 - 2022. [Multimodal video summarization based on fuzzy similarity features](https://doi.org/10.1109/IVMSP54334.2022.9816266). T. Psallidas, M. D. Vasilakakis, E. Spyrou, D. K. Iakovidis, IEEE IVMSP
 - 2021. [Multimodal summarization of user-generated videos](https://doi.org/10.3390/app11115260). T. Psallidas et al., Applied Sciences
+- 2020. [ARCHEO: a dataset for sound event detection in areas of touristic interest](https://doi.org/10.1109/SMAP49528.2020.9248467). T. Psallidas et al., SMAP
 - 2020. [Dimensionality reduction and attention mechanisms for extracting affective state from sound spectrograms](https://doi.org/10.1007/978-3-030-66125-0_3). G. Pikramenos et al., ICPRAM
 
 ## Education
