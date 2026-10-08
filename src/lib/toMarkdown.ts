@@ -1,4 +1,4 @@
-import { EXPERIENCE_DATA, EDUCATION_DATA } from '@/components/Portfolio/data';
+import { CERTIFICATIONS_DATA, EXPERIENCE_DATA, EDUCATION_DATA } from '@/components/Portfolio/data';
 import { PUBLICATIONS, doiUrl } from '@/components/Portfolio/publications';
 import { PROJECTS, repoUrl } from '@/components/Portfolio/projects';
 import { CONTACT_LINKS } from '@/components/Portfolio/annotations';
@@ -20,6 +20,7 @@ export const toMarkdown = (siteUrl: string): string => {
   );
   const pubs = PUBLICATIONS.map((p) => `- ${p.year}. [${p.title}](${doiUrl(p.doi)}). ${p.authors}, ${p.venue}`);
   const repos = PROJECTS.map((p) => `- [${p.name}](${repoUrl(p.name)}): ${p.description} (${p.language})`);
+  const certs = CERTIFICATIONS_DATA.map((c) => `- ${c.url ? `[${c.name}](${c.url})` : c.name}, ${c.issuer} (${c.date})`);
   const links = CONTACT_LINKS.map((l) => `- [${l.label}](${l.href}): ${l.text}`);
   return [
     '# Theodoros Psallidas',
@@ -39,6 +40,10 @@ export const toMarkdown = (siteUrl: string): string => {
     '## Education',
     '',
     edu.join('\n'),
+    '',
+    '### Certifications',
+    '',
+    certs.join('\n'),
     '',
     '## Open source',
     '',

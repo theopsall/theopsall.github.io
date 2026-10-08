@@ -224,6 +224,7 @@ a.dx-org:hover { text-decoration-color: var(--accent); }
 .ft-fine { margin: 3rem 0 0; font-size: 0.875rem; color: var(--term-text-dim); }
 
 /* ─── Education & contact ────────────────────────────────── */
+.pf-h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.015em; color: var(--term-text-primary); margin: 2.25rem 0 0; }
 .edu-list { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: 1.5rem; }
 .edu-row { display: grid; gap: 0.15rem; }
 .edu-row { font-family: var(--font-mono); }
