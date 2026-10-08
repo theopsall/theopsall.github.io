@@ -1,5 +1,5 @@
 import React from 'react';
-import { EDUCATION_DATA } from '@/components/Terminal/constants';
+import { EDUCATION_DATA } from '@/components/Portfolio/data';
 
 const Education: React.FC = () => (
   <section className="pf-section" aria-labelledby="education-h">

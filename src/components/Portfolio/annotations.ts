@@ -1,5 +1,5 @@
 // `= note:` lines shown under a role's source. Each restates a phrase that
-// already appears in that role's highlights in Terminal/constants.ts.
+// already appears in that role's highlights in data.ts.
 export interface Annotation {
   span: string;
   note: string;
@@ -38,8 +38,12 @@ export const ANNOTATIONS: Record<string, Annotation[]> = {
 
 export const CV_HREF = './Theodoros_Psallidas_CV.pdf';
 
+export type ContactIcon = 'email' | 'github' | 'linkedin' | 'scholar' | 'work';
+
 export const CONTACT_LINKS = [
-  { label: 'Email', text: 'theopsall@gmail.com', href: 'mailto:theopsall@gmail.com' },
-  { label: 'GitHub', text: 'github.com/theopsall', href: 'https://github.com/theopsall' },
-  { label: 'LinkedIn', text: 'linkedin.com/in/tpsallidas', href: 'https://www.linkedin.com/in/tpsallidas' },
+  { icon: 'email', label: 'Email', text: 'theopsall@gmail.com', href: 'mailto:theopsall@gmail.com' },
+  { icon: 'github', label: 'GitHub', text: 'github.com/theopsall', href: 'https://github.com/theopsall' },
+  { icon: 'linkedin', label: 'LinkedIn', text: 'linkedin.com/in/tpsallidas', href: 'https://www.linkedin.com/in/tpsallidas' },
+  { icon: 'scholar', label: 'Scholar', text: 'Google Scholar profile', href: 'https://scholar.google.com/citations?user=478yYkIAAAAJ' },
+  { icon: 'work', label: 'Work', text: 'proxyfoods.ai', href: 'https://proxyfoods.ai' },
 ] as const;

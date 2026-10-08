@@ -1,32 +1,27 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 
+@font-face { font-family: "Geist"; src: url("./assets/fonts/Geist-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("./assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Geist Pixel Circle"; src: url("./assets/fonts/GeistPixel-Circle.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+
 @layer base {
   :root {
     --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
     --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    /* ─── Terminal Theme Tokens ─────────────────────────────── */
-    --term-bg-base:        #0b0c0e;   /* page / navbar */
-    --term-bg-surface:     #0f1115;   /* terminal window body */
-    --term-bg-elevated:    #14161b;   /* title bar */
-    --term-bg-tab:         #0d0f12;   /* tab strip */
-    --term-bg-chip:        #161920;   /* chips / badges */
-    --term-bg-card:        #1a1d24;   /* cards / exp blocks */
-    --term-border:         #242832;   /* main borders */
-    --term-border-mid:     #343945;   /* traffic lights */
-    --term-text-primary:   #f4f4f5;
-    --term-text-secondary: #d6d6db;
-    --term-text-light:     #c2c2ca;
-    --term-text-muted:     #b0b0ba;
-    --term-text-dim:       #a0a0ab;
-    --term-text-faint:     #9d9da8;
-    --term-text-zinc:      #a1a1aa;
-    --term-accent-blue:    #8ab4f8;   /* p10k dir */
-    --term-accent-green:   #9ad6a0;   /* p10k git / arrow */
-    --term-accent-amber: #f0b04a;
-    --term-accent-red:     #ef4444;   /* error / low battery */
-    --term-nav-line:       #e5e5e5;   /* navbar bottom line */
-    --term-nav-led:        #d4d4d4;   /* navbar LED / cursor */
+    --font-pixel: "Geist Pixel Circle", "Geist", ui-sans-serif, system-ui, sans-serif;
+    /* ─── Vercel-style tokens: black ground, gray ramp, one blue accent ─── */
+    --term-bg-base:        #000000;
+    --term-bg-elevated:    #111111;
+    --term-border:         #1f1f1f;
+    --term-border-mid:     #333333;
+    --term-text-primary:   #ededed;
+    --term-text-secondary: #c8c8c8;
+    --term-text-muted:     #b0b0b0;
+    --term-text-dim:       #a1a1a1;
+    --term-text-faint:     #999999;
+    --accent:              #52a8ff;
+    --accent-hover:        #a8d3ff;
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -50,14 +45,14 @@
   }
 
   .dark {
-    --background: 220 13% 7%;
+    --background: 0 0% 0%;
     --foreground: 210 40% 98%;
     --card: 220 13% 9%;
     --card-foreground: 210 40% 98%;
     --popover: 220 13% 9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 212 100% 66%;
-    --primary-foreground: 240 10% 8%;
+    --primary: 0 0% 93%;
+    --primary-foreground: 0 0% 0%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
@@ -68,7 +63,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212 100% 66%;
+    --ring: 208 100% 66%;
   }
 
   * {
@@ -121,7 +116,7 @@ code {
 
 ::-webkit-scrollbar-thumb {
   background: var(--term-border-mid); /* Color of the scroll thumb */
-  border-radius: 5px; /* Border radius of the scroll thumb */
+  border-radius: 4px; /* Border radius of the scroll thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -134,5 +129,5 @@ html {
 }
 
 /* Browser surfaces themed from the palette */
-::selection { background: rgba(240, 176, 74, 0.32); color: var(--term-text-primary); }
-:focus-visible { outline: 2px solid var(--term-accent-amber); outline-offset: 3px; }
+::selection { background: rgba(82, 168, 255, 0.3); color: var(--term-text-primary); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }

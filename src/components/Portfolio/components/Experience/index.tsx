@@ -1,5 +1,5 @@
 import React from 'react';
-import { EXPERIENCE_DATA } from '@/components/Terminal/constants';
+import { EXPERIENCE_DATA } from '@/components/Portfolio/data';
 import { ANNOTATIONS } from '@/components/Portfolio/annotations';
 import { useRoles } from '@/components/Portfolio/hooks/useRoles';
 import RoleBlock from './components/RoleBlock';

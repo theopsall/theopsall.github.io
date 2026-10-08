@@ -1,58 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" sizes="any"/>
+    <link rel="icon" href="./favicon.ico" sizes="48x48" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0b0c0e" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="dark" />
 
-    <!-- Primary SEO -->
     <title>Theodoros Psallidas · Software Engineer</title>
-    <meta name="description" content="Theodoros Psallidas (theopsall) — Senior Software Engineer building agentic platforms with LangGraph. Experience, education, and an interactive shell." />
-    <meta name="keywords" content="Theodoros Psallidas, Theo Psallidas, theopsall, software engineer, full stack developer, portfolio, React, TypeScript, Python" />
+    <meta name="description" content="Theodoros Psallidas (theopsall), Senior Software Engineer at ProxyFoods building agentic platforms with LangGraph. Experience, education, CV and contact." />
     <meta name="author" content="Theodoros Psallidas" />
-    <link rel="canonical" href="https://theopsall.github.io" />
+    <meta name="is-agentic-site-type" content="content" />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
+    <link rel="alternate" type="text/markdown" href="%VITE_SITE_URL%/index.md" />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://theopsall.github.io" />
-    <meta property="og:title" content="theopsall — Theodoros Psallidas" />
-    <meta property="og:description" content="Theodoros Psallidas (theopsall) — Senior Software Engineer building agentic platforms with LangGraph. Experience, education, and an interactive shell." />
-    <meta property="og:site_name" content="theopsall" />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:title" content="Theodoros Psallidas · Software Engineer" />
+    <meta property="og:description" content="Senior Software Engineer at ProxyFoods building agentic platforms with LangGraph. PhD candidate, University of Thessaly." />
+    <meta property="og:site_name" content="Theodoros Psallidas" />
+    <meta property="og:image" content="%VITE_SITE_URL%/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Theodoros Psallidas, Software Engineer" />
 
-    <!-- Twitter / X -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="theopsall — Theodoros Psallidas" />
-    <meta name="twitter:description" content="Theodoros Psallidas (theopsall) — Senior Software Engineer building agentic platforms with LangGraph. Experience, education, and an interactive shell." />
-    <meta name="twitter:creator" content="@theopsall" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Theodoros Psallidas · Software Engineer" />
+    <meta name="twitter:description" content="Senior Software Engineer at ProxyFoods building agentic platforms with LangGraph." />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/og.png" />
+    <meta name="twitter:creator" content="@TheoPsallidas" />
 
-    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Theodoros Psallidas",
-      "alternateName": ["Theo Psallidas", "theopsall"],
-      "url": "https://theopsall.github.io",
-      "jobTitle": "Software Engineer",
-      "sameAs": [
-        "https://github.com/theopsall",
-        "https://linkedin.com/in/tpsallidas"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "%VITE_SITE_URL%/#website",
+          "url": "%VITE_SITE_URL%/",
+          "name": "Theodoros Psallidas",
+          "inLanguage": "en",
+          "publisher": { "@id": "%VITE_SITE_URL%/#person" }
+        },
+        {
+          "@type": "Person",
+          "@id": "%VITE_SITE_URL%/#person",
+          "name": "Theodoros Psallidas",
+          "alternateName": ["Theo Psallidas", "theopsall"],
+          "url": "%VITE_SITE_URL%/",
+          "image": "%VITE_SITE_URL%/og.png",
+          "description": "Senior Software Engineer building agentic platforms with LangGraph. PhD candidate in Computer Science.",
+          "jobTitle": "Senior Software Engineer",
+          "email": "mailto:theopsall@gmail.com",
+          "address": { "@type": "PostalAddress", "addressLocality": "Athens", "addressCountry": "GR" },
+          "worksFor": { "@type": "Organization", "name": "ProxyFoods", "url": "https://proxyfoods.ai" },
+          "alumniOf": [{ "@type": "CollegeOrUniversity", "name": "University of Thessaly" }, { "@type": "CollegeOrUniversity", "name": "University of Peloponnese" }],
+          "knowsAbout": ["Agentic AI", "LangGraph", "Retrieval-augmented generation", "Machine learning", "Computer vision", "Video summarization", "React", "TypeScript", "Python", "FastAPI"],
+          "sameAs": [
+            "https://github.com/theopsall",
+            "https://www.linkedin.com/in/tpsallidas",
+            "https://scholar.google.com/citations?user=478yYkIAAAAJ",
+            "https://twitter.com/TheoPsallidas"
+          ]
+        }
       ]
     }
     </script>
 
     <link rel="apple-touch-icon" href="./logo192.png" />
     <link rel="manifest" href="./manifest.json" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="./src/index.tsx"></script>
   </body>
 </html>
- 
