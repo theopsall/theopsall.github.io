@@ -32,7 +32,7 @@ Remote · Greece · Mar 2024 - Feb 2025
 Stack: ReactJS, FastAPI, Django, Docker, Ansible, Azure, AWS, PostgreSQL, Milvus, MLflow
 
 ### Machine Learning Engineer, [NCSR Demokritos](https://www.demokritos.gr)
-Ayia Paraskevi, Greece · Dec 2022 - Feb 2024
+Remote · Greece · Dec 2022 - Feb 2024
 
 - Built music copyright monitoring and inference pipelines for IoT and Raspberry Pi fleets.
 - Migrated models to deep learning and FAISS vector search to improve detection latency and accuracy.
@@ -40,7 +40,7 @@ Ayia Paraskevi, Greece · Dec 2022 - Feb 2024
 Stack: ReactJS, FastAPI, PyTorch, FAISS, PostgreSQL, Docker, Balena, AWS, MLflow
 
 ### Lead Software Engineer, [Optechain](https://optechain.com)
-Argyroupoli, Greece · Oct 2020 - Feb 2024
+On-site · Argyroupoli, Greece · Oct 2020 - Feb 2024
 
 - Led frontend and backend development for digital signage and EV-charging stations.
 - Ran the Azure and Docker stack and managed device-fleet updates for safer rollouts.
@@ -48,7 +48,7 @@ Argyroupoli, Greece · Oct 2020 - Feb 2024
 Stack: React, Angular, Node.js, C#, Azure, Docker, MSSQL, Balena, Mender
 
 ### Machine Learning Engineer, [NCSR Demokritos](https://www.demokritos.gr)
-Ayia Paraskevi, Greece · Dec 2019 - Jul 2022
+Remote · Greece · Dec 2019 - Jul 2022
 
 - Built video summarization and multimodal analysis models for the Enorasi project.
 - Improved summarization through model architecture and feature-fusion experiments.
@@ -72,6 +72,11 @@ Stack: PyTorch, scikit-learn, Python, Computer Vision, Multimodal ML
 - **PhD Candidate in Computer Science**, University of Thessaly (2021 - Present)
 - **MSc in Data Science**, University of Peloponnese (2019 - 2021). Thesis: Multimodal summarization of user-generated videos from wearable cameras
 - **BSc in Computer Science**, University of Thessaly (2013 - 2018)
+
+### Certifications
+
+- [Back End Development and APIs](https://freecodecamp.org/certification/theopsall/back-end-development-and-apis), freeCodeCamp (2022)
+- CCNA Routing and Switching course, University of Thessaly (2016 - 2017)
 
 ## Open source
 
