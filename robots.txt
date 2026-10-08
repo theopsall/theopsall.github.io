@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://theopsall.github.io/tpsallidas/sitemap.xml
+Sitemap: https://theopsall.github.io/sitemap.xml

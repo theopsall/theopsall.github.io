@@ -11,14 +11,14 @@ This is a personal portfolio: one page, no API, no login, no tracking.
 - Finding his research: 7 peer-reviewed papers (2020 to 2024) on video and multimodal summarization, computer vision and audio, linked by DOI on the page and in index.md; also on Google Scholar and dblp.
 - Getting his CV (PDF) or contact details to reach out about senior engineering or agentic-platform work.
 
-Fetch the Markdown version for the cleanest read: [index.md](https://theopsall.github.io/tpsallidas/index.md). Sending `Accept: text/markdown` to the homepage is not supported on this static host.
+Fetch the Markdown version for the cleanest read: [index.md](https://theopsall.github.io/index.md). Sending `Accept: text/markdown` to the homepage is not supported on this static host.
 
 ## Pages
 
-- [Home (HTML)](https://theopsall.github.io/tpsallidas/): experience, education, contact
-- [Home (Markdown)](https://theopsall.github.io/tpsallidas/index.md): the same content as plain Markdown
-- [CV (PDF)](https://theopsall.github.io/tpsallidas/Theodoros_Psallidas_CV.pdf)
-- [Sitemap](https://theopsall.github.io/tpsallidas/sitemap.xml)
+- [Home (HTML)](https://theopsall.github.io/): experience, education, contact
+- [Home (Markdown)](https://theopsall.github.io/index.md): the same content as plain Markdown
+- [CV (PDF)](https://theopsall.github.io/Theodoros_Psallidas_CV.pdf)
+- [Sitemap](https://theopsall.github.io/sitemap.xml)
 
 ## Open source
 

@@ -2,7 +2,7 @@
 
 Senior Software Engineer at ProxyFoods building frontier agentic platforms with LangGraph. PhD candidate in Computer Science, University of Thessaly.
 
-Canonical: https://theopsall.github.io/tpsallidas/
+Canonical: https://theopsall.github.io/
 
 ## Experience
 
