@@ -18,6 +18,9 @@ Fetch the Markdown version for the cleanest read: [index.md](https://theopsall.g
 - [Home (HTML)](https://theopsall.github.io/): experience, education, contact
 - [Home (Markdown)](https://theopsall.github.io/index.md): the same content as plain Markdown
 - [CV (PDF)](https://theopsall.github.io/Theodoros_Psallidas_CV.pdf)
+- [About](https://theopsall.github.io/about): who he is and what he does
+- [Contact](https://theopsall.github.io/contact): how to reach him
+- [Privacy](https://theopsall.github.io/privacy): no cookies, analytics or tracking
 - [Sitemap](https://theopsall.github.io/sitemap.xml)
 
 ## Open source
